@@ -10,4 +10,8 @@ int stringLen(uint8_t *string);
 // Standard function for writing text to screen.
 void printString(const char *string);
 
+// Implementation of standard printf
+// https://cplusplus.com/reference/cstdio/printf/r
+int printf( const char * format, ... );
+
 #endif
