@@ -63,23 +63,11 @@ add_executable(uiaos-kernel
 	src/kernel.cpp
 
 	# 5_OsExp
-	# Adding source files to be compiled
-	src/stdlib/stdmem.c
-	src/stdlib/stdport.c
-	src/stdlib/stdtxt.c
-	src/screen/screen.c
-	src/screen/splash.c
-	src/gdt/gdt.c
-	src/idt/idt.c
 )
 
 # Include directories for the kernel target
 target_include_directories(uiaos-kernel PUBLIC 
 	include
-	src/stdlib
-	src/gdt
-	src/idt
-	src/screen
 )
 
 
