@@ -4,6 +4,7 @@
 #include <multiboot2.h>
 
 #include "libc/string.h"
+#include "display.h"
 
 struct multiboot_info {
     uint32_t size;
@@ -14,7 +15,10 @@ struct multiboot_info {
 int kernel_main();
 
 int main(uint32_t magic, struct multiboot_info* mb_info_addr) {
+    displayInit();
+    displayWrite("Hello, World!");
 
+    for (;;) ;
     // Call cpp kernel_main (defined in kernel.cpp)
     return kernel_main();
 }

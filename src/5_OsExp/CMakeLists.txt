@@ -62,7 +62,7 @@ add_executable(uiaos-kernel
     src/kernel.c
 	src/kernel.cpp
 
-	# 5_OsExp
+	# 5_OsExp source files
 	src/libc/string.c
 	src/libc/stdio.c
 	src/common.c
