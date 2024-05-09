@@ -90,6 +90,8 @@ Open new shell, go to: /workspaces/2024-ikt218-os-exp-5/build/5_OsExp$
 1. ``gdb``
 2. ``target remote tcp::1234``
 3. ``file kernel.bin``
+4. ``break <somewhere>``
+5. ``continue``
 
 ``s`` step
 

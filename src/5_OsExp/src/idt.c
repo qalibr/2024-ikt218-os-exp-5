@@ -6,12 +6,10 @@ extern void idtFlush(uint32_t idtPtr);
 
 void idtSetGate(uint8_t num, uint32_t base, uint16_t selector, uint8_t flags) {
     idt[num].baseLow = base & 0xFFFF;
-    idt[num].baseHigh = (base >> 16) & 0xFFFF;
-
     idt[num].selector = selector;
     idt[num].always0 = 0;
-
     idt[num].flags = flags /*| 0x60*/;
+    idt[num].baseHigh = (base >> 16) & 0xFFFF;
 }
 
 void installIdt() {
@@ -19,6 +17,18 @@ void installIdt() {
     idtPtr.base = (uint32_t)&idt;
 
     memSet((uint8_t *)&idt, 0, sizeof(struct _idtEntry_t) * IDT_ENTRIES);
+
+    // Remapping IRQ table
+    outPortByte(0x20, 0x11);
+    outPortByte(0xA0, 0x11);
+    outPortByte(0x21, 0x20);
+    outPortByte(0xA1, 0x28);
+    outPortByte(0x21, 0x04);
+    outPortByte(0xA1, 0x02);
+    outPortByte(0x21, 0x01);
+    outPortByte(0xA1, 0x01);
+    outPortByte(0x21, 0x0);
+    outPortByte(0xA1, 0x0);
 
     idtSetGate(0, (uint32_t)isr0, 0x08, 0x8E);
     idtSetGate(1, (uint32_t)isr1, 0x08, 0x8E);
@@ -52,6 +62,22 @@ void installIdt() {
     idtSetGate(29, (uint32_t)isr29, 0x08, 0x8E);
     idtSetGate(30, (uint32_t)isr30, 0x08, 0x8E);
     idtSetGate(31, (uint32_t)isr31, 0x08, 0x8E);
+    idtSetGate(32, (uint32_t)irq0, 0x08, 0x8E);
+    idtSetGate(33, (uint32_t)irq1, 0x08, 0x8E);
+    idtSetGate(34, (uint32_t)irq2, 0x08, 0x8E);
+    idtSetGate(35, (uint32_t)irq3, 0x08, 0x8E);
+    idtSetGate(36, (uint32_t)irq4, 0x08, 0x8E);
+    idtSetGate(37, (uint32_t)irq5, 0x08, 0x8E);
+    idtSetGate(38, (uint32_t)irq6, 0x08, 0x8E);
+    idtSetGate(39, (uint32_t)irq7, 0x08, 0x8E);
+    idtSetGate(40, (uint32_t)irq8, 0x08, 0x8E);
+    idtSetGate(41, (uint32_t)irq9, 0x08, 0x8E);
+    idtSetGate(42, (uint32_t)irq10, 0x08, 0x8E);
+    idtSetGate(43, (uint32_t)irq11, 0x08, 0x8E);
+    idtSetGate(44, (uint32_t)irq12, 0x08, 0x8E);
+    idtSetGate(45, (uint32_t)irq13, 0x08, 0x8E);
+    idtSetGate(46, (uint32_t)irq14, 0x08, 0x8E);
+    idtSetGate(47, (uint32_t)irq15, 0x08, 0x8E);
     
     idtFlush((uint32_t)&idtPtr);
 }
