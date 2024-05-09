@@ -12,7 +12,7 @@
 
 ; The macro takes one parameter, accessed through %1
 %macro ISR_NOERRCODE 1
-  [GLOBAL isr%1]
+  global isr%1
   isr%1:
     ;cli                
     push byte 0         
@@ -22,7 +22,7 @@
 
 ; Macro for when there is an error code
 %macro ISR_ERRCODE 1
-  [GLOBAL isr%1]
+  global isr%1
   isr%1:
     ;cli                     
     push %1                 
@@ -77,7 +77,7 @@ isrCommonHandler:
 
     call isrHandler
 
-    pop ebx                 ; Reload original data segment descriptor
+    pop ebx
     mov ds, ax              ; Segment registers
     mov es, ax
     mov fs, ax
