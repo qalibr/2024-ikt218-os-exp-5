@@ -6,7 +6,7 @@
 ;    cli                         ; disable interrupts
 ;    push byte 0                 ; Dummy error code. 
 ;    push byte 0                 ; Interrupt number
-;    jmp _isrCommonHandler        ; Jump to common handler for interrupts
+;    jmp isrCommonHandler        ; Jump to common handler for interrupts
 
 ; Using macro to make the 32 routines
 
@@ -17,7 +17,7 @@
     ;cli                
     push byte 0         
     push  %1            
-    jmp _isrCommonHandler
+    jmp isrCommonHandler
 %endmacro
 
 ; Macro for when there is an error code
@@ -26,7 +26,7 @@
   isr%1:
     ;cli                     
     push %1                 
-    jmp _isrCommonHandler
+    jmp isrCommonHandler
 %endmacro
 
 ISR_NOERRCODE 0
@@ -63,7 +63,7 @@ ISR_NOERRCODE 30
 ISR_NOERRCODE 31
 
 extern isrHandler
-_isrCommonHandler:
+isrCommonHandler:
     pusha                   ; "all" registers
 
     mov ax, ds
@@ -89,8 +89,8 @@ _isrCommonHandler:
     iret                    ; Returning from interrupt and pop CS, EIP, EFLAGS, SS, and ESP simultaneously.
 
 
-global _idtFlush
-_idtFlush:
+global idtFlush
+idtFlush:
     mov eax, [esp+4]            ; Getting pointer to the IDT
     lidt [eax]                  ; loading the poitner
     ret                         ; Returning to C code

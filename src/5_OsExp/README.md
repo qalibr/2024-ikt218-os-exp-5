@@ -75,3 +75,26 @@ You can go into the "Run and Debug" CTRL+SHIFT+D and simply click the play butto
 This is important, _ONLY_ changes under _YOUR_ build and src directories should be different from the source repo.
 
 I have made changes to .gitignore, they will need to be reverted end-of-year before pull request.
+
+
+
+
+##....
+
+Open shell, go to: /workspaces/2024-ikt218-os-exp-5/build/5_OsExp$ 
+
+``qemu-system-i386 -S -s -hda kernel.iso -hdb disk.iso``
+
+Open new shell, go to: /workspaces/2024-ikt218-os-exp-5/build/5_OsExp$ 
+
+1. ``gdb``
+2. ``target remote tcp::1234``
+3. ``file kernel.bin``
+
+``s`` step
+
+``si`` step into
+
+``finish`` step out
+
+
