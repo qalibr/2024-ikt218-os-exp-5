@@ -11,7 +11,7 @@ void idtSetGate(uint8_t num, uint32_t base, uint16_t selector, uint8_t flags) {
     idt[num].selector = selector;
     idt[num].always0 = 0;
 
-    idt[num].flags = flags | 0x60;
+    idt[num].flags = flags /*| 0x60*/;
 }
 
 void installIdt() {

@@ -12,8 +12,8 @@ struct _idtEntry_t {
     uint16_t baseLow;
     uint16_t selector;
     uint8_t always0;
-    uint16_t baseHigh;
     uint8_t flags;
+    uint16_t baseHigh;
 } __attribute__((packed));
 
 struct _idtPtr_t {
