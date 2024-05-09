@@ -18,5 +18,4 @@ typedef struct Registers {
     uint32_t eip, cs, eflags, useresp, ss;              // Pushed by processor automatically.
 } Registers_t;
 
-
 #endif

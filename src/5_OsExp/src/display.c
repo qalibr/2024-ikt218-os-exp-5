@@ -122,4 +122,23 @@ void displayInit(void) {
 }
 
 // void displayWriteHex(uint32_t num);    
-// void displayWriteDec(uint32_t num);
+void displayWriteDec(uint32_t num) {
+    if (num == 0) {
+        displayPut('0');
+        return;
+    }
+
+    char buffer[32];
+    int i = 10;         // Start filling the buffer from the end
+    buffer[i] = '\0';   // Append null terminator to the end.
+
+    // Filling the buffer beginning from the end
+    while (num > 0) {
+        i--;                            // Move one position left
+        buffer[i] = '0' + (num % 10);   // Calculate the last digit and add to buffer
+        num /= 10;                      // Remove the last digit from the number
+    }
+
+    // Now, buffer[i] points to the first character of the string
+    displayWrite(buffer + i);
+}

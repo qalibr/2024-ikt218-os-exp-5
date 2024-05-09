@@ -19,6 +19,6 @@ void displayPut(char c);                                        // Function to p
 void displaySetTextColor(uint8_t fgColor, uint8_t bgColor);     // Function to set the color of the background and foreground
 void displayInit();
 // void displayWriteHex(uint32_t num);                          // Represent hex number
-// void displayWriteDec(uint32_t num);                          // Represent decimal number
+void displayWriteDec(uint32_t num);                             // Represent decimal number
 
 #endif

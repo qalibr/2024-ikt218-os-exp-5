@@ -22,15 +22,14 @@ int main(uint32_t magic, struct multiboot_info* mb_info_addr) {
 
     displayInit(); // Enables writing characters to screen
 
-    displayWrite("Hello, World!");
-
+    displayWrite("Hello, World!\n");
 
     int i = 5;
 
     printf("Print 5: %d", i + 5);
     // TODO: printf
 
-    // asm volatile("int $0x03");
+    asm volatile("int $0x03"); // I crash here..
     // __asm__ __volatile__ ("int $0x3");
     //__asm__ __volatile__ ("int $0x4");
 

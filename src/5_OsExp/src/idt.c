@@ -5,9 +5,8 @@
 extern void _idtFlush(uint32_t idtPtr);
 
 extern void isrHandler(Registers_t r) {
-    uint8_t int_no = r.int_no & 0xFF;
-
     displayWrite("Caught interrupt: ");
+    displayWriteDec(r.int_no);
     displayPut('\n');
 }
 
