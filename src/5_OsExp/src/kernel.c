@@ -3,8 +3,8 @@
 #include "libc/stdbool.h"
 #include <multiboot2.h>
 
-#include "libc/string.h"
 #include "display.h"
+#include "gdt.h"
 
 struct multiboot_info {
     uint32_t size;
@@ -15,8 +15,15 @@ struct multiboot_info {
 int kernel_main();
 
 int main(uint32_t magic, struct multiboot_info* mb_info_addr) {
-    displayInit();
+    installGdt();
+
+    //installIdt();
+
+    displayInit(); // Enables writing characters to screen
+
     displayWrite("Hello, World!");
+ 
+    // __asm__ __volatile__ ("int $0x8");
 
     for (;;) ;
     // Call cpp kernel_main (defined in kernel.cpp)

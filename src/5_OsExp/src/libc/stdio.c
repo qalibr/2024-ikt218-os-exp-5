@@ -3,9 +3,7 @@
 #include "libc/stdint.h"
 
 
-int putchar(int ic) {
-    //    
-}
+int putchar(int ic);
 
 bool print(const char* data, size_t length);
 

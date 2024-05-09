@@ -1,6 +1,9 @@
 /*
- * SOURCE https://web.archive.org/web/20190302142203/http://www.jamesmolloy.co.uk/tutorial_html/3.-The%20Screen.html
+ * sources: 
+ *      https://web.archive.org/web/20190302142203/http://www.jamesmolloy.co.uk/tutorial_html/3.-The%20Screen.html
+ *      http://www.osdever.net/bkerndev/Docs/printing.htm
  */
+
 
 #ifndef DISPLAY_H
 #define DISPLAY_H

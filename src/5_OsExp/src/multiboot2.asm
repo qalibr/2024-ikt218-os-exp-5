@@ -28,22 +28,6 @@ header_end:
 section .text
 bits 32
 
-;_gdt_flush:
-;    lgdt [_gdtp]        ; Load the GDT with our 'gp'
-;    mov ax, 0x10        ; Data segment selector
-;    mov ds, ax
-;    mov es, ax
-;    mov fs, ax
-;    mov gs, ax
-;    mov ss, ax
-;    jmp 0x08:flush2     ; Far jump to refresh code segment selector
-;flush2:
-;    ret                 ; Return to C code
-;
-;idt_load:
-;    lidt [_idtp]         ; Load pointer
-;    ret                 ; Return to C code
-
 _start:
     cli                 ; Disabling interrupts
 
