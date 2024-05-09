@@ -60,7 +60,7 @@ set(OS_KERNEL_LINKER "${CMAKE_CURRENT_SOURCE_DIR}/src/arch/${OS_ARCH_TARGET}/lin
 add_executable(uiaos-kernel 
 	src/multiboot2.asm
 	src/gdt.asm
-	#src/idt.asm
+	src/interrupt.asm
 	
     src/kernel.c
 	src/kernel.cpp
@@ -72,7 +72,7 @@ add_executable(uiaos-kernel
 	src/display.c
 	src/system.c
 	src/gdt.c
-	#src/idt.c
+	src/idt.c
 )
 
 # Include directories for the kernel target

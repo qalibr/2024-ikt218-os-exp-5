@@ -2,30 +2,30 @@
 #define IDT_H
 
 #include "libc/stdint.h"
+#include "system.h"
+#include "display.h"
+#include "libc/string.h"
 
-struct _idtEntry {
+#define IDT_ENTRIES 256
+
+struct _idtEntry_t {
     uint16_t baseLow;
-    uint16_t selector; // Kernel segment
+    uint16_t selector;
     uint8_t always0;
     uint16_t baseHigh;
-
-    /*
-    Bit 7: Present or not
-    Bit 6-5: Descriptor Privilege Level, 0-3
-    Bit 4-0: Always 0b---0 1110 = 14
-    */
     uint8_t flags;
 } __attribute__((packed));
-typedef struct _idtEntry idtEntry_t;
 
-struct _idtPtr {
+struct _idtPtr_t {
     uint16_t limit;
     uint32_t base;
 } __attribute__((packed));
-typedef struct _idtPtr idtPtr_t;
 
 void installIdt();
 void idtSetGate(uint8_t num, uint32_t base, uint16_t selector, uint8_t flags);
+
+static struct _idtEntry_t idt[IDT_ENTRIES];
+static struct _idtPtr_t idtPtr;
 
 extern void isr0();
 extern void isr1();

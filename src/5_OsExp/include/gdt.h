@@ -21,7 +21,6 @@ struct _gdtPtr_t {
 } __attribute__((packed));
 
 void installGdt();
-void gdtLoad();
 void gdtSetGate(int num, uint32_t base, uint32_t limit, uint8_t access, uint8_t granularity);
 
 static struct _gdtEntry_t gdt[GDT_ENTRIES];

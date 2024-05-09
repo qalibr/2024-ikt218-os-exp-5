@@ -1,13 +1,6 @@
 ; Source:
 ; https://web.archive.org/web/20190309070619/http://www.jamesmolloy.co.uk/tutorial_html/4.-The%20GDT%20and%20IDT.html
-
-global _idtFlush
-
-_idtFlush:
-    mov eax, [esp+4]          ; Getting pointer to the IDT
-    lidt [eax]                  ; loading the poitner
-    ret                         ; Returning to C code
-    
+   
 ;global _isr0
 ;_isr0:
 ;    cli                         ; disable interrupts
@@ -19,7 +12,7 @@ _idtFlush:
 
 ; The macro takes one parameter, accessed through %1
 %macro ISR_NOERRCODE 1
-  global isr%1
+  [GLOBAL isr%1]
   isr%1:
     ;cli                
     push byte 0         
@@ -29,7 +22,7 @@ _idtFlush:
 
 ; Macro for when there is an error code
 %macro ISR_ERRCODE 1
-  global isr%1
+  [GLOBAL isr%1]
   isr%1:
     ;cli                     
     push %1                 
@@ -70,7 +63,6 @@ ISR_NOERRCODE 30
 ISR_NOERRCODE 31
 
 extern isrHandler
-
 _isrCommonHandler:
     pusha                   ; "all" registers
 
@@ -95,3 +87,10 @@ _isrCommonHandler:
     add esp, 8              ; Clean up the pushed error code and pushed ISR number
     sti
     iret                    ; Returning from interrupt and pop CS, EIP, EFLAGS, SS, and ESP simultaneously.
+
+
+global _idtFlush
+_idtFlush:
+    mov eax, [esp+4]            ; Getting pointer to the IDT
+    lidt [eax]                  ; loading the poitner
+    ret                         ; Returning to C code

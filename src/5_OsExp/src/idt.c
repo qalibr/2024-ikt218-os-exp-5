@@ -1,32 +1,31 @@
 #include "idt.h"
-#include "system.h"
 
 #define IDT_ENTRIES 256
 
-extern void _idtFlush(uint32_t _idtPtr);
-idtEntry_t idtEntries[IDT_ENTRIES];
-idtPtr_t _idtPtr;
+extern void _idtFlush(uint32_t idtPtr);
 
-void isrHandler(Registers_t r) {
+extern void isrHandler(Registers_t r) {
+    uint8_t int_no = r.int_no & 0xFF;
+
     displayWrite("Caught interrupt: ");
     displayPut('\n');
 }
 
 void idtSetGate(uint8_t num, uint32_t base, uint16_t selector, uint8_t flags) {
-    idtEntries[num].baseLow = base & 0xFFFF;
-    idtEntries[num].baseHigh = (base >> 16) & 0xFFFF;
+    idt[num].baseLow = base & 0xFFFF;
+    idt[num].baseHigh = (base >> 16) & 0xFFFF;
 
-    idtEntries[num].selector = selector;
-    idtEntries[num].always0 = 0;
+    idt[num].selector = selector;
+    idt[num].always0 = 0;
 
-    idtEntries[num].flags = flags | 0x60; // Set privilege level to 3. Use while in user
+    idt[num].flags = flags | 0x60; // Set privilege level to 3. Use while in user
 }
 
 void installIdt() {
-    _idtPtr.limit = sizeof(idtEntry_t) * IDT_ENTRIES - 1;
-    _idtPtr.base = (uint32_t) &idtEntries;
+    idtPtr.limit = sizeof(struct _idtEntry_t) * IDT_ENTRIES - 1;
+    idtPtr.base = (uint32_t) &idt;
 
-    memSet((uint8_t *)&idtEntries, 0, sizeof(idtEntry_t) * IDT_ENTRIES);
+    memSet((uint8_t *)&idt, 0, sizeof(struct _idtEntry_t) * IDT_ENTRIES);
 
     idtSetGate(0, (uint32_t)isr0, 0x08, 0x8E);
     idtSetGate(1, (uint32_t)isr1, 0x08, 0x8E);
@@ -61,5 +60,5 @@ void installIdt() {
     idtSetGate(30, (uint32_t)isr30, 0x08, 0x8E);
     idtSetGate(31, (uint32_t)isr31, 0x08, 0x8E);
     
-    _idtFlush((uint32_t) &_idtPtr);
+    _idtFlush((uint32_t) &idtPtr);
 }
