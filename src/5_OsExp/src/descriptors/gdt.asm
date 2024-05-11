@@ -2,9 +2,9 @@
 ; https://web.archive.org/web/20190309070619/http://www.jamesmolloy.co.uk/tutorial_html/4.-The%20GDT%20and%20IDT.html
 ; http://www.osdever.net/bkerndev/Docs/gdt.htm
 
-global _gdtFlush
+global GdtFlush
 
-_gdtFlush:
+GdtFlush:
     mov eax, [esp+4]
     lgdt [eax]          ; Loading our pointer into the GDT
 
@@ -15,7 +15,7 @@ _gdtFlush:
     mov gs, ax
     mov ss, ax
 
-    jmp 0x08:flush_new     ; Far jump to refresh code segment selector
+    jmp 0x08:Flush     ; Far jump to refresh code segment selector
 
-flush_new:
+Flush:
     ret                 ; Return to C code

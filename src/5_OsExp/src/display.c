@@ -35,7 +35,7 @@ size_t cursorY;
 size_t cursorX;
 uint8_t displayColor = (VGA_BLACK << 4) | (VGA_WHITE & 0x0F); // Default black background and white text(foreground)
 
-void displayPut(char c) {
+void DisplayPut(char c) {
     uint8_t attributeByte = displayColor;
 
     uint16_t attribute = attributeByte << 8;
@@ -52,11 +52,11 @@ void displayPut(char c) {
     if (cursorX >= SCREEN_WIDTH)    { cursorX = 0; cursorY++; }
 
     // cursorX and cursorY are global variables, scrolling and cursor movement will happen if it must.
-    displayScroll();
-    displayMoveCursor();
+    DisplayScroll();
+    DisplayMoveCursor();
 }
 
-void displayClear() {
+void DisplayClear() {
     uint8_t attributeByte = displayColor;
     uint16_t blank = 0x20 | (attributeByte << 8);
 
@@ -68,26 +68,26 @@ void displayClear() {
     // Also reset position of the cursor
     cursorX = 0;
     cursorY = 0;
-    displayMoveCursor();
+    DisplayMoveCursor();
 }
 
-void displayWrite(char *c) {
+void DisplayWrite(const char *c) {
     size_t i = 0;
-
-    while (c[i]) displayPut(c[i++]); // Write until null terminator ('\0') is encountered.
+    
+    while (c[i]) DisplayPut(c[i++]); // Write until null terminator ('\0') is encountered.
 }  
 
-void displayMoveCursor() {
+void DisplayMoveCursor() {
     uint16_t cursorLocation = cursorY * SCREEN_WIDTH + cursorX;
 
     // Sending commands to the VGA board, to move the cursor
-    outPortByte(0x3D4, 14);                     // Set high cursor byte.
-    outPortByte(0x3D5, cursorLocation >> 8);    // Send that high byte.
-    outPortByte(0x3D4, 15);                     // Set low cursor byte.
-    outPortByte(0x3D5, cursorLocation);         // Send that low cursor byte.
+    OutPortByte(0x3D4, 14);                     // Set high cursor byte.
+    OutPortByte(0x3D5, cursorLocation >> 8);    // Send that high byte.
+    OutPortByte(0x3D4, 15);                     // Set low cursor byte.
+    OutPortByte(0x3D5, cursorLocation);         // Send that low cursor byte.
 }
 
-void displayScroll() {
+void DisplayScroll() {
     // Setting background and foreground color;
     uint8_t attributeByte = displayColor;
 
@@ -112,20 +112,20 @@ void displayScroll() {
     }
 }
 
-void displaySetTextColor(uint8_t fgColor, uint8_t bgColor) {
+void DisplaySetTextColor(uint8_t fgColor, uint8_t bgColor) {
     displayColor = (bgColor << 4) | (fgColor & 0x0F);
 }
 
-void initDisplay(void) {
+void InitDisplay(void) {
     displayBuffer = displayMemory;
-    displayClear();
+    DisplayClear();
 }
 
 // void displayWriteHex(uint32_t num);    
 
-void displayWriteDec(uint32_t num) {
+void DisplayWriteDec(uint32_t num) {
     if (num == 0) {
-        displayPut('0');
+        DisplayPut('0');
         return;
     }
 
@@ -141,5 +141,5 @@ void displayWriteDec(uint32_t num) {
     }
 
     // Now, buffer[i] points to the first character of the string
-    displayWrite(buffer + i);
+    DisplayWrite(buffer + i);
 }

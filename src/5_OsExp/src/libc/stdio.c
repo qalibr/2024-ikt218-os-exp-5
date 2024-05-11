@@ -14,7 +14,7 @@ https://stackoverflow.com/questions/54352400/implementation-of-printf-function
 
 int putchar(int ic) {
     char c = (char)ic;
-    displayPut(c);
+    DisplayPut(c);
     return ic;
 }
 
@@ -28,7 +28,7 @@ bool print(const char* data, size_t length) {
     return true;
 }
 
-int printInt(int value, int base) {
+int PrintDigit(int value, int base) {
     char buffer[32];
     char *ptr = buffer + sizeof(buffer) - 1;
     *ptr = '\0';
@@ -88,9 +88,12 @@ int printf(const char* __restrict__ format, ...) {
                 case 'd':
                 case 'i': {
                     int num = va_arg(args, int);
-
-                    // Passing int argument to helper function that will let us print integers.
-                    written += printInt(num, 10); 
+                    written += PrintDigit(num, 10); 
+                    break;
+                }
+                case 'x': {
+                    int hex = va_arg(args, int);
+                    written += PrintDigit(hex, 16);
                     break;
                 }
                 case '%': {

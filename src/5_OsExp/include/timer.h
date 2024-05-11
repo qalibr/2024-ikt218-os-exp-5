@@ -8,6 +8,6 @@
 #include "interrupt/isr.h"
 #include "libc/stdio.h"
 
-void initTimer(uint32_t freq);
+void InitTimer(uint32_t freq);
 
 #endif

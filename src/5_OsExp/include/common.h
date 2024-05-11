@@ -8,12 +8,12 @@
 #include "libc/stdint.h"
 
 // Sending byte out to specified port
-void outPortByte(uint16_t port, uint8_t value);  
+void OutPortByte(uint16_t port, uint8_t value);  
 
 // Receiving byte from specified port
-uint8_t inPortByte(uint16_t port);          
+uint8_t InPortByte(uint16_t port);          
 
 // Receiving word from specified port
-uint16_t inPortWord(uint16_t port);                 
+uint16_t InPortWord(uint16_t port);                 
 
 #endif

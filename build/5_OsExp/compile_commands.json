@@ -46,6 +46,11 @@
 },
 {
   "directory": "/workspaces/2024-ikt218-os-exp-5/build/5_OsExp",
+  "command": "/usr/local/bin/i686-elf-gcc -I/workspaces/2024-ikt218-os-exp-5/src/5_OsExp/include -g -Wall -Wextra -nostdinc -nostdlib -fno-builtin -fno-stack-protector -fno-stack-check -fno-lto -fPIE -m32 -march=i386 -mno-mmx -mno-sse -mno-sse2 -mno-red-zone -Wno-main -g -Wno-unused-variable -Wno-unused-parameter -std=gnu99 -o CMakeFiles/uiaos-kernel.dir/src/system.c.o -c /workspaces/2024-ikt218-os-exp-5/src/5_OsExp/src/system.c",
+  "file": "/workspaces/2024-ikt218-os-exp-5/src/5_OsExp/src/system.c"
+},
+{
+  "directory": "/workspaces/2024-ikt218-os-exp-5/build/5_OsExp",
   "command": "/usr/local/bin/i686-elf-gcc -I/workspaces/2024-ikt218-os-exp-5/src/5_OsExp/include -g -Wall -Wextra -nostdinc -nostdlib -fno-builtin -fno-stack-protector -fno-stack-check -fno-lto -fPIE -m32 -march=i386 -mno-mmx -mno-sse -mno-sse2 -mno-red-zone -Wno-main -g -Wno-unused-variable -Wno-unused-parameter -std=gnu99 -o CMakeFiles/uiaos-kernel.dir/src/descriptors/gdt.c.o -c /workspaces/2024-ikt218-os-exp-5/src/5_OsExp/src/descriptors/gdt.c",
   "file": "/workspaces/2024-ikt218-os-exp-5/src/5_OsExp/src/descriptors/gdt.c"
 },
@@ -63,5 +68,15 @@
   "directory": "/workspaces/2024-ikt218-os-exp-5/build/5_OsExp",
   "command": "/usr/local/bin/i686-elf-gcc -I/workspaces/2024-ikt218-os-exp-5/src/5_OsExp/include -g -Wall -Wextra -nostdinc -nostdlib -fno-builtin -fno-stack-protector -fno-stack-check -fno-lto -fPIE -m32 -march=i386 -mno-mmx -mno-sse -mno-sse2 -mno-red-zone -Wno-main -g -Wno-unused-variable -Wno-unused-parameter -std=gnu99 -o CMakeFiles/uiaos-kernel.dir/src/timer.c.o -c /workspaces/2024-ikt218-os-exp-5/src/5_OsExp/src/timer.c",
   "file": "/workspaces/2024-ikt218-os-exp-5/src/5_OsExp/src/timer.c"
+},
+{
+  "directory": "/workspaces/2024-ikt218-os-exp-5/build/5_OsExp",
+  "command": "/usr/local/bin/i686-elf-gcc -I/workspaces/2024-ikt218-os-exp-5/src/5_OsExp/include -g -Wall -Wextra -nostdinc -nostdlib -fno-builtin -fno-stack-protector -fno-stack-check -fno-lto -fPIE -m32 -march=i386 -mno-mmx -mno-sse -mno-sse2 -mno-red-zone -Wno-main -g -Wno-unused-variable -Wno-unused-parameter -std=gnu99 -o CMakeFiles/uiaos-kernel.dir/src/memory/paging.c.o -c /workspaces/2024-ikt218-os-exp-5/src/5_OsExp/src/memory/paging.c",
+  "file": "/workspaces/2024-ikt218-os-exp-5/src/5_OsExp/src/memory/paging.c"
+},
+{
+  "directory": "/workspaces/2024-ikt218-os-exp-5/build/5_OsExp",
+  "command": "/usr/local/bin/i686-elf-gcc -I/workspaces/2024-ikt218-os-exp-5/src/5_OsExp/include -g -Wall -Wextra -nostdinc -nostdlib -fno-builtin -fno-stack-protector -fno-stack-check -fno-lto -fPIE -m32 -march=i386 -mno-mmx -mno-sse -mno-sse2 -mno-red-zone -Wno-main -g -Wno-unused-variable -Wno-unused-parameter -std=gnu99 -o CMakeFiles/uiaos-kernel.dir/src/memory/memory.c.o -c /workspaces/2024-ikt218-os-exp-5/src/5_OsExp/src/memory/memory.c",
+  "file": "/workspaces/2024-ikt218-os-exp-5/src/5_OsExp/src/memory/memory.c"
 }
 ]

@@ -10,7 +10,7 @@
 #define IDT_ENTRIES 256
 
 // Define a single entry of the IDT. Descriptors for segments.
-struct _idtEntry_t {
+struct idtEntry_t {
     uint16_t baseLow;
     uint16_t selector;
     uint8_t always0;
@@ -19,66 +19,66 @@ struct _idtEntry_t {
 } __attribute__((packed));
 
 // Size and address of the IDT
-struct _idtPtr_t {
+struct idtPtr_t {
     uint16_t limit;
     uint32_t base;
 } __attribute__((packed));
 
-void installIdt();
+void InstallIdt();
 
 // Configuration for a single entry.
-void idtSetGate(uint8_t num, uint32_t base, uint16_t selector, uint8_t flags);
+void IdtSetGate(uint8_t num, uint32_t base, uint16_t selector, uint8_t flags);
 
-static struct _idtEntry_t idt[IDT_ENTRIES];     // Array of IDT entries
-static struct _idtPtr_t idtPtr;                 // Pointer to IDT
+static struct idtEntry_t idt[IDT_ENTRIES];     // Array of IDT entries
+static struct idtPtr_t idtPtr;                 // Pointer to IDT
 
-extern void isr0();
-extern void isr1();
-extern void isr2();
-extern void isr3();
-extern void isr4();
-extern void isr5();
-extern void isr6();
-extern void isr7();
-extern void isr8();
-extern void isr9();
-extern void isr10();
-extern void isr11();
-extern void isr12();
-extern void isr13();
-extern void isr14();
-extern void isr15();
-extern void isr16();
-extern void isr17();
-extern void isr18();
-extern void isr19();
-extern void isr20();
-extern void isr21();
-extern void isr22();
-extern void isr23();
-extern void isr24();
-extern void isr25();
-extern void isr26();
-extern void isr27();
-extern void isr28();
-extern void isr29();
-extern void isr30();
-extern void isr31();
-extern void irq0 ();
-extern void irq1 ();
-extern void irq2 ();
-extern void irq3 ();
-extern void irq4 ();
-extern void irq5 ();
-extern void irq6 ();
-extern void irq7 ();
-extern void irq8 ();
-extern void irq9 ();
-extern void irq10();
-extern void irq11();
-extern void irq12();
-extern void irq13();
-extern void irq14();
-extern void irq15();
+extern void Isr0();
+extern void Isr1();
+extern void Isr2();
+extern void Isr3();
+extern void Isr4();
+extern void Isr5();
+extern void Isr6();
+extern void Isr7();
+extern void Isr8();
+extern void Isr9();
+extern void Isr10();
+extern void Isr11();
+extern void Isr12();
+extern void Isr13();
+extern void Isr14();
+extern void Isr15();
+extern void Isr16();
+extern void Isr17();
+extern void Isr18();
+extern void Isr19();
+extern void Isr20();
+extern void Isr21();
+extern void Isr22();
+extern void Isr23();
+extern void Isr24();
+extern void Isr25();
+extern void Isr26();
+extern void Isr27();
+extern void Isr28();
+extern void Isr29();
+extern void Isr30();
+extern void Isr31();
+extern void Irq0 ();
+extern void Irq1 ();
+extern void Irq2 ();
+extern void Irq3 ();
+extern void Irq4 ();
+extern void Irq5 ();
+extern void Irq6 ();
+extern void Irq7 ();
+extern void Irq8 ();
+extern void Irq9 ();
+extern void Irq10();
+extern void Irq11();
+extern void Irq12();
+extern void Irq13();
+extern void Irq14();
+extern void Irq15();
 
 #endif

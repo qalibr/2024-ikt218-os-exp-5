@@ -16,7 +16,7 @@ size_t strlen(const char* str) {
     return len;
 }
 
-uint8_t *memCpy(uint8_t *target, const uint8_t *source, size_t bytes) {
+uint8_t *MemCpy(uint8_t *target, const uint8_t *source, size_t bytes) {
     const char *sourcePtr = (const char *)source;
     char *targetPtr = (char *)target;
 
@@ -28,7 +28,7 @@ uint8_t *memCpy(uint8_t *target, const uint8_t *source, size_t bytes) {
     return target;
 }
 
-uint8_t *memSet(uint8_t *target, uint8_t val, size_t bytes) {
+uint8_t *MemSet(uint8_t *target, uint8_t val, size_t bytes) {
     char *targetPtr = (char *)target;
 
     // Set each byte in the target memory to val for the specified number of bytes
@@ -39,7 +39,7 @@ uint8_t *memSet(uint8_t *target, uint8_t val, size_t bytes) {
     return target;
 }
 
-uint16_t *memSetWord(uint16_t *target, uint16_t val, size_t words) {
+uint16_t *MemSetWord(uint16_t *target, uint16_t val, size_t words) {
     uint16_t *targetPtr = (uint16_t *)target;
 
     // Set each word in the target memory to val for the specified number of words.

@@ -1,21 +1,21 @@
 #include "descriptors/gdt.h"
 
-extern void _gdtFlush(uint32_t gdtPtr);
+extern void GdtFlush(uint32_t gdtPtr);
 
-void installGdt() {
-    gdtPtr.limit = (sizeof(struct _gdtEntry_t) * GDT_ENTRIES) - 1;
+void InstallGdt() {
+    gdtPtr.limit = (sizeof(struct gdtEntry_t) * GDT_ENTRIES) - 1;
     gdtPtr.base = (uint32_t) &gdt;
 
-    gdtSetGate(0, 0, 0, 0, 0); // NULL segment
-    gdtSetGate(1, 0, 0xFFFFFFFF, 0x9A, 0xCF); // Code segment
-    gdtSetGate(2, 0, 0xFFFFFFFF, 0x92, 0xCF); // Data segment
-    gdtSetGate(3, 0, 0xFFFFFFFF, 0xFA, 0xCF); // User mode code segment
-    gdtSetGate(4, 0, 0xFFFFFFFF, 0xF2, 0xCF); // User mode data segment
+    GdtSetGate(0, 0, 0, 0, 0); // NULL segment
+    GdtSetGate(1, 0, 0xFFFFFFFF, 0x9A, 0xCF); // Code segment
+    GdtSetGate(2, 0, 0xFFFFFFFF, 0x92, 0xCF); // Data segment
+    GdtSetGate(3, 0, 0xFFFFFFFF, 0xFA, 0xCF); // User mode code segment
+    GdtSetGate(4, 0, 0xFFFFFFFF, 0xF2, 0xCF); // User mode data segment
 
-    _gdtFlush((uint32_t) &gdtPtr);
+    GdtFlush((uint32_t) &gdtPtr);
 }
 
-void gdtSetGate(int num, uint32_t base, uint32_t limit, uint8_t access, uint8_t granularity) {
+void GdtSetGate(int num, uint32_t base, uint32_t limit, uint8_t access, uint8_t granularity) {
 
         // Base addresses in the descriptor, length 32 bits
         gdt[num].baseLow = (base & 0xFFFF); // Lower 16 bits, AND'ing bitmask to preserve 16 bits.

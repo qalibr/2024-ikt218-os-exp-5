@@ -6,36 +6,36 @@
 ;    cli                         ; disable interrupts
 ;    push byte 0                 ; Dummy error code. 
 ;    push byte 0                 ; Interrupt number
-;    jmp isrCommonHandler        ; Jump to common handler for interrupts
+;    jmp IsrCommonHandler        ; Jump to common handler for interrupts
 
 ; Using macro to make the 32 routines
 
 ; The macro takes one parameter, accessed through %1
 %macro ISR_NOERRCODE 1
-  global isr%1
-  isr%1:
+  global Isr%1
+  Isr%1:
     cli                
     push byte 0         
     push  %1            
-    jmp isrCommonHandler
+    jmp IsrCommonHandler
 %endmacro
 
 ; Macro for when there is an error code
 %macro ISR_ERRCODE 1
-  global isr%1
-  isr%1:
+  global Isr%1
+  Isr%1:
     cli                     
     push %1                 
-    jmp isrCommonHandler
+    jmp IsrCommonHandler
 %endmacro
 
 %macro IRQ 2
-  global irq%1
-  irq%1:
+  global Irq%1
+  Irq%1:
     cli
     push byte 0
     push byte %2
-    jmp irqCommonHandler
+    jmp IrqCommonHandler
 %endmacro
 
 ISR_NOERRCODE 0
@@ -71,8 +71,8 @@ ISR_NOERRCODE 29
 ISR_NOERRCODE 30
 ISR_NOERRCODE 31
 
-extern isrHandler
-isrCommonHandler:
+extern IsrHandler
+IsrCommonHandler:
     pusha                   ; "all" registers
 
     mov ax, ds              ; Moving current DS into AX
@@ -84,7 +84,7 @@ isrCommonHandler:
     mov fs, ax
     mov gs, ax
 
-    call isrHandler
+    call IsrHandler
 
     pop ebx
     mov ds, ax              ; Segment registers
@@ -98,8 +98,8 @@ isrCommonHandler:
     iret                    ; Returning from interrupt and pop CS, EIP, EFLAGS, SS, and ESP simultaneously.
 
 
-global idtFlush
-idtFlush:
+global IdtFlush
+IdtFlush:
     mov eax, [esp+4]            ; Getting pointer to the IDT
     lidt [eax]                  ; loading the poitner
     ret                         ; Returning to C code
@@ -121,8 +121,8 @@ IRQ 13, 45
 IRQ 14, 46
 IRQ 15, 47
 
-extern irqHandler
-irqCommonHandler:
+extern IrqHandler
+IrqCommonHandler:
   pusha
 
   mov ax, ds
@@ -134,7 +134,7 @@ irqCommonHandler:
   mov fs, ax
   mov gs, ax
 
-  call irqHandler
+  call IrqHandler
 
   pop ebx
   mov ds, bx

@@ -26,12 +26,12 @@
 #define IRQ14 46
 #define IRQ15 47
 
-extern void isrHandler(Registers_t r);
-extern void irqHandler(Registers_t r);
+extern void IsrHandler(Registers_t r);
+extern void IrqHandler(Registers_t r);
 typedef void (*isr_t)(Registers_t);
 extern isr_t interruptHandlers[INT_HANDLERS];
 
-void registerInterruptHandler(uint8_t n, isr_t handler);
-void initInterruptHandlers();
+void RegisterInterruptHandler(uint8_t n, isr_t handler);
+void InitInterruptHandlers();
 
 #endif

@@ -2,23 +2,23 @@
 
 uint32_t tick = 0;
 
-static void timerCallback(Registers_t r) {
+static void TimerCallback(Registers_t r) {
     tick++;
-    displayWrite("Tick: ");
-    displayWriteDec(tick);
-    displayWrite("\n");
+    DisplayWrite("Tick: ");
+    DisplayWriteDec(tick);
+    DisplayWrite("\n");
 }
 
-void initTimer(uint32_t freq) {
-    registerInterruptHandler(IRQ0, &timerCallback);
+void InitTimer(uint32_t freq) {
+    RegisterInterruptHandler(IRQ0, &TimerCallback);
 
     uint32_t divisor = 1193180 / freq;
 
-    outPortByte(0x43, 0x36);
+    OutPortByte(0x43, 0x36);
 
     uint8_t low = (uint8_t)(divisor & 0xFF);
     uint8_t high = (uint8_t)((divisor >> 8) & 0xFF);
 
-    outPortByte(0x40, low);
-    outPortByte(0x40, high);
+    OutPortByte(0x40, low);
+    OutPortByte(0x40, high);
 }

@@ -11,29 +11,29 @@
 #include "libc/stdint.h"
 
 // Put single char to screen
-void displayPut(char c);                                        
+void DisplayPut(char c);                                        
 
 // Clear the screen 
-void displayClear();                                            
+void DisplayClear();                                            
 
 // Write null-terminated ASCII string to monitor
-void displayWrite(char *c);                                     
+void DisplayWrite(const char *c);                                     
 
 // Function to move the cursor
-void displayMoveCursor();                                       
+void DisplayMoveCursor();                                       
 
 // Function to scroll the display as more input is received
-void displayScroll();                                           
+void DisplayScroll();                                           
 
 // Function to place a single character to the screen.
-void displayPut(char c);                                        
+void DisplayPut(char c);                                        
 
 // Function to set the color of the background and foreground
-void displaySetTextColor(uint8_t fgColor, uint8_t bgColor);     
-void initDisplay();
+void DisplaySetTextColor(uint8_t fgColor, uint8_t bgColor);     
+void InitDisplay();
 
 // Represent decimal number
-void displayWriteDec(uint32_t num);                             
+void DisplayWriteDec(uint32_t num);                             
 
 // Represent hex number
 // void displayWriteHex(uint32_t num);                          
