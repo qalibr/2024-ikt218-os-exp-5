@@ -116,12 +116,13 @@ void displaySetTextColor(uint8_t fgColor, uint8_t bgColor) {
     displayColor = (bgColor << 4) | (fgColor & 0x0F);
 }
 
-void displayInit(void) {
+void initDisplay(void) {
     displayBuffer = displayMemory;
     displayClear();
 }
 
 // void displayWriteHex(uint32_t num);    
+
 void displayWriteDec(uint32_t num) {
     if (num == 0) {
         displayPut('0');

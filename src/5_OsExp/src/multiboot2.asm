@@ -29,14 +29,14 @@ section .text
 bits 32
 
 _start:
-    cli                 ; Disabling interrupts
+    cli                     ; Disabling interrupts
 
-    mov esp, stack_top
+    mov esp, stack_top      ; Setting stack pointer to the top of the stack
 
 	push ebx
 	push eax
 
-    call main ; Jump main function
+    call main               ; Jump main function
 
 section .bss
 stack_bottom:
