@@ -3,9 +3,9 @@
 // Generic ISR handler that is called when an interrupt is caught.
 void IsrHandler(Registers_t r) {
     // Check if a specific handler is associated with the interrupt.
-    // if (interruptHandlers[r->int_no] != 0) {
-    //     isr_t handler = interruptHandlers[r->int_no];
-    //     handler(r, NULL);
+    // if (interruptHandlers[r.int_no] != 0) {
+    //     isr_t handler = interruptHandlers[r.int_no];
+    //     handler(&r, NULL);
     // }
 
     uint8_t int_no = r.int_no & 0xFF;
@@ -17,7 +17,7 @@ void IsrHandler(Registers_t r) {
         DisplayWrite("Caught interrupt: ");
         DisplayWriteDec(r.int_no);
         DisplayPut('\n');
-        for(;;);
+        for(;;) ;
     }
 }
 
@@ -46,7 +46,7 @@ void RegisterInterruptHandler(uint8_t n, isr_t handler, void *context) {
     interruptHandlers[n].data = context;
 }
 
-void RegisterIrqHandler(int irq, isr_t handler, void *context) {
+void RegisterIrqHandler(uint8_t irq, isr_t handler, void *context) {
     irqHandlers[irq].handler = handler;
     irqHandlers[irq].data = context;
 }

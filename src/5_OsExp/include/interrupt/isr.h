@@ -10,25 +10,23 @@
 
 #define IRQ_COUNT 16
 
-extern void IsrHandler(Registers_t r);
-extern void IrqHandler(Registers_t r);
-
 typedef void (*isr_t)(Registers_t*, void*);
-
 struct interruptHandler_t {
     int num;
     isr_t handler;
     void *data;
 };
 
+extern void IsrHandler(Registers_t r);
 static struct interruptHandler_t interruptHandlers[IDT_ENTRIES];
-static struct interruptHandler_t irqHandlers[IRQ_COUNT];
-
 void RegisterInterruptHandler(uint8_t n, isr_t handler, void *context);
-void RegisterIrqHandler(int irq, isr_t handler, void *context);
-
-void InitIrqHandlers();
 void InitInterruptHandlers();
+
+
+extern void IrqHandler(Registers_t r);
+static struct interruptHandler_t irqHandlers[IRQ_COUNT];
+void RegisterIrqHandler(uint8_t irq, isr_t handler, void *context);
+void InitIrqHandlers();
 
 #define ISR1 1
 #define ISR2 2

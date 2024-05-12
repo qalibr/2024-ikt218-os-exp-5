@@ -2,6 +2,10 @@
 #include "memory/paging.h"
 #include "pit.h"
 
+
+#include "interrupt/isr.h"
+#include "libc/stddef.h"
+
 extern void IdtFlush(uint32_t idtPtr);
 
 void IdtSetGate(uint8_t num, uint32_t base, uint16_t selector, uint8_t flags) {
@@ -16,7 +20,17 @@ void InstallIdt() {
     idtPtr.limit = sizeof(struct idtEntry_t) * IDT_ENTRIES - 1;
     idtPtr.base = (uint32_t)&idt;
 
-    MemSet((uint8_t *)&idt, 0, sizeof(struct idtEntry_t) * IDT_ENTRIES);
+    // MemSet((uint8_t *)&idt, 0, sizeof(struct idtEntry_t) * IDT_ENTRIES);
+    for (int i = 0; i < IDT_ENTRIES; i++) {
+        idt[i].baseLow = 0x0000;
+        idt[i].selector = 0x08;
+        idt[i].always0 = 0x00;
+        idt[i].flags = 0x8E;
+        idt[i].baseHigh = 0x0000;
+
+        interruptHandlers[i].handler = NULL;
+        interruptHandlers[i].data = NULL;
+    }
 
     // Remapping IRQ table
     OutPortByte(0x20, 0x11);

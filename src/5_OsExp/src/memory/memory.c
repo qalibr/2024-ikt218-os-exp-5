@@ -18,7 +18,7 @@ void InitKernelMemory(uint32_t *kernelEnd) {
     pheapBegin = pheapEnd - (MAX_PAGE_ALIGNED_ALLOCS * 4096);
 
     heapEnd = pheapBegin;
-    MemSet((uint8_t*)heapBegin, 0, heapEnd - heapBegin);
+    memset((uint8_t*)heapBegin, 0, heapEnd - heapBegin);
 
     pheapDesc = (uint8_t*)Malloc(MAX_PAGE_ALIGNED_ALLOCS);
     printf("Kernel heap begins at 0x%x\n", lastAlloc);
@@ -37,6 +37,7 @@ void Free(void *mem) {
     alloc_t *alloc = (mem - sizeof(alloc_t));
     memoryUsed -= alloc->size + sizeof(alloc_t);
     alloc->status = 0;
+    printf("Freed %d bytes from 0x%x to 0x%x.\n", alloc->size, (uint32_t)mem, (uint32_t)mem + alloc->size);
 }
 
 void PFree(void *mem) {
@@ -83,7 +84,7 @@ extern void* Malloc(size_t size) {
         if (al->size >= size) {
             al->status = 1;
             printf("RE:Allocated %d bytes from 0x%x to 0x%x\n", size, memory + sizeof(alloc_t), memory + sizeof(alloc_t) + size);
-            MemSet(memory + sizeof(alloc_t), 0, size);
+            memset(memory + sizeof(alloc_t), 0, size);
             memoryUsed += size + sizeof(alloc_t);
 
             return (char *)(memory + sizeof(alloc_t));
@@ -108,7 +109,7 @@ extern void* Malloc(size_t size) {
     printf("Allocated %d bytes from 0x%x to 0x%x\n", size, (uint32_t)alloc + sizeof(alloc_t), lastAlloc);
 
     memoryUsed += size + 4 + sizeof(alloc_t);
-    MemSet((uint8_t *)((uint32_t)alloc + sizeof(alloc_t)), 0, size);
+    memset((uint8_t *)((uint32_t)alloc + sizeof(alloc_t)), 0, size);
 
     return (uint8_t *)((uint32_t)alloc + sizeof(alloc_t));
 }
