@@ -167,5 +167,4 @@ void DisplayWriteHex(uint32_t hex) {
 
     // Now, buffer[i + 1] points to the first character of the string
     DisplayWrite(&buffer[i + 1]);
-
 }

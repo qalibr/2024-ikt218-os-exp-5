@@ -5,7 +5,8 @@ extern "C" {
     #include "libc/stdbool.h"
     #include "libc/stddef.h"
     #include "pit.h"
-    #include "io/keyboard.h" // /src/5_OsExp/include/io
+    #include "io/keyboard.h"
+    #include "music/music.h"
 }
 
 /* ASSIGNMENT_4.1 Memory Management */
@@ -71,6 +72,20 @@ int kernel_main(){
 
     /* ASSIGNMENT_3.4 Keyboard Logger */
     InitKeyboard();
+    
+    Tune *tunes[] = {
+        new Tune({battlefield_1942_theme, sizeof(battlefield_1942_theme) / sizeof(Note)}),
+        new Tune({starwars_theme, sizeof(starwars_theme) / sizeof(Note)}),
+    };
+
+    uint32_t playlistSize = sizeof(tunes) / sizeof(Tune *);
+
+    DisplayClear();
+    printf("~ MUSIC ~\n");
+    MusicPlayer *boomblaster = CreateMusicPlayer();
+    for (uint32_t i = 0; i < playlistSize; i++) {
+        boomblaster->playTune(tunes[i]);
+    }
 
     for (;;) ;
     return 0;
