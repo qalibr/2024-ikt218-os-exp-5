@@ -43,3 +43,26 @@ void InitPaging() {
     EnablePaging();
     printf("Initialization successful.\n");
 }
+
+void PageFaultHandler(Registers_t r) {
+    uint32_t faultAddress;
+    asm volatile("mov %%cr2, %0" : "=r" (faultAddress));
+
+    int present = !(r.err_code & 0x1);
+    int rw = r.err_code & 0x2;
+    int us = r.err_code & 0x4;
+    int reserved = r.err_code & 0x8;
+    int id = r.err_code & 0x10;
+
+    DisplayWrite("Fault occured ( ");
+    if (present) DisplayWrite("present ");
+    if (rw) DisplayWrite("read-only ");
+    if (us) DisplayWrite("user-mode ");
+    if (reserved) DisplayWrite("reserved ");
+
+    DisplayWrite(") at 0x");
+    DisplayWriteHex(faultAddress);
+    DisplayWrite("\n");
+
+    Panic("Page fault!");
+}

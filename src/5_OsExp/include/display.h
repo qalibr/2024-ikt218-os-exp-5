@@ -33,10 +33,10 @@ void DisplaySetTextColor(uint8_t fgColor, uint8_t bgColor);
 void InitDisplay();
 
 // Represent decimal number
-void DisplayWriteDec(uint32_t num);                             
+void DisplayWriteDec(uint32_t num);
 
 // Represent hex number
-// void displayWriteHex(uint32_t num);                          
+void DisplayWriteHex(uint32_t num);
 
 
 #endif

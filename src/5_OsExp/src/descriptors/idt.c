@@ -1,6 +1,6 @@
 #include "descriptors/idt.h"
-
-#define IDT_ENTRIES 256
+#include "memory/paging.h"
+#include "pit.h"
 
 extern void IdtFlush(uint32_t idtPtr);
 
@@ -8,7 +8,7 @@ void IdtSetGate(uint8_t num, uint32_t base, uint16_t selector, uint8_t flags) {
     idt[num].baseLow = base & 0xFFFF;
     idt[num].selector = selector;
     idt[num].always0 = 0;
-    idt[num].flags = flags /*| 0x60*/;
+    idt[num].flags = flags | 0x60;
     idt[num].baseHigh = (base >> 16) & 0xFFFF;
 }
 

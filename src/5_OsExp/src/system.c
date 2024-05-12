@@ -23,7 +23,7 @@ void _exit(int status) {
 
 void Panic(const char* reason) {
     DisplayWrite(reason);
-    DisplayWrite("\nHalting system\n");
+    DisplayWrite("\nHalting system...");
 
     asm volatile("cli");
     while (true) {

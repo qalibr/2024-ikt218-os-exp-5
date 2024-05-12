@@ -74,8 +74,7 @@ add_executable(uiaos-kernel
 	src/descriptors/gdt.c
 	src/descriptors/idt.c
 	src/interrupt/isr.c
-	src/timer.c
-
+	src/pit.c
 	src/memory/paging.c
 	src/memory/memory.c
 )
