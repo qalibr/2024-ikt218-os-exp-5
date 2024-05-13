@@ -1,3 +1,7 @@
+/* Source: 
+- UiA, Per-Arne Lecture/Assignment Assets
+- https://web.archive.org/web/20190216040308/http://www.jamesmolloy.co.uk/tutorial_html/5.-IRQs%20and%20the%20PIT.html */
+
 #ifndef ISR_H
 #define ISR_H
 
@@ -5,7 +9,7 @@
 #include "system.h"
 #include "io/display.h"
 #include "libc/string.h"
-#include "common.h"
+#include "io/port.h"
 #include "descriptors/idt.h"
 
 #define IRQ_COUNT 16

@@ -1,3 +1,5 @@
+/* Source: UiA, Per-Arne Lecture/Assignment Assets */
+
 #ifndef MEMORY_H
 #define MEMORY_H
 

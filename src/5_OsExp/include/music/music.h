@@ -1,10 +1,12 @@
+/* Source: UiA, Per-Arne Lecture/Assignment Assets */
+
 #ifndef MUSIC_H
 #define MUSIC_H
 
 #include "frequencies.h"
 #include "libc/stdint.h"
-#include "pit.h"
-#include "common.h"
+#include "io/pit.h"
+#include "io/port.h"
 #include "memory/memory.h"
 
 typedef struct {

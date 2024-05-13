@@ -1,3 +1,5 @@
+/* Source: UiA, Per-Arne Lecture/Assignment Assets */
+
 #include "memory/paging.h"
 #include "libc/string.h"
 
@@ -20,7 +22,7 @@ void PagingMap(uint32_t virtual, uint32_t physical) {
 
 
 void EnablePaging() {
-    asm volatile("mov %%eax, %%cr3": :"a"(pageDirLoc));       // Load the physical address of the page dir into the CR3 reg
+    asm volatile("mov %%eax, %%cr3": :"a"(pageDirLoc));         // Load the physical address of the page dir into the CR3 reg
     asm volatile("mov %cr0, %eax");                             // Load CR0 register into EAX
     asm volatile("orl $0x80000000, %eax");                      // Setting "enable paging" bit in the EAX reg.
     asm volatile("mov %eax, %cr0");                             // Load the EAX reg into the CR0 register to then enable paging.

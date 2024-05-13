@@ -68,13 +68,13 @@ add_executable(uiaos-kernel
 	# 5_OsExp source files
 	src/libc/string.c
 	src/libc/stdio.c
-	src/common.c
+	src/io/port.c
 	src/io/display.c
 	src/system.c
 	src/descriptors/gdt.c
 	src/descriptors/idt.c
 	src/interrupt/isr.c
-	src/pit.c
+	src/io/pit.c
 	src/memory/paging.c
 	src/memory/memory.c
 	src/io/keyboard.c

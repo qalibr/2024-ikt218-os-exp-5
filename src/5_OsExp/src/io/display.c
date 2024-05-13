@@ -1,11 +1,10 @@
-/*
- * sources: 
- *      https://web.archive.org/web/20190302142203/http://www.jamesmolloy.co.uk/tutorial_html/3.-The%20Screen.html
- *      http://www.osdever.net/bkerndev/Docs/printing.htm
- */
+/* Source:
+- https://web.archive.org/web/20190302142203/http://www.jamesmolloy.co.uk/tutorial_html/3.-The%20Screen.html
+- http://www.osdever.net/bkerndev/Docs/printing.htm
+- UiA, Per-Arne Lecture/Assignment Assets */
 
 #include "io/display.h"
-#include "common.h"
+#include "io/port.h"
 
 enum VGA_COLOR {
 	VGA_BLACK = 0,

@@ -1,3 +1,7 @@
+/* Source: 
+- UiA, Per-Arne Lecture/Assignment Assets
+- https://web.archive.org/web/20190216040308/http://www.jamesmolloy.co.uk/tutorial_html/5.-IRQs%20and%20the%20PIT.html */
+
 #include "interrupt/isr.h"
 
 // Generic ISR handler that is called when an interrupt is caught.

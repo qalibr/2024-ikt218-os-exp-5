@@ -1,9 +1,7 @@
+/* Source: http://www.osdever.net/bkerndev/Docs/creatingmain.htm */
+
 #include "libc/string.h"
 #include "libc/stdint.h"
-
-/*
- * SOURCE: http://www.osdever.net/bkerndev/Docs/creatingmain.htm
- */
 
 size_t strlen(const char* str) {
     size_t len = 0;  // Initialize length variable.

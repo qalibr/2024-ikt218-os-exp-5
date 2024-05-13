@@ -1,3 +1,5 @@
+/* Source: UiA, Per-Arne Lecture/Assignment Assets */
+
 #ifndef KEYBOARD_H
 #define KEYBOARD_H
 
@@ -5,7 +7,7 @@
 
 #include "libc/stdint.h"
 #include "libc/stdbool.h"
-#include "common.h"
+#include "port.h"
 #include "libc/stdio.h"
 #include "system.h"
 #include "interrupt/isr.h"

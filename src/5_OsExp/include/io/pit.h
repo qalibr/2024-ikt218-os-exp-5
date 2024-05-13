@@ -1,8 +1,10 @@
+/* Source: UiA, Per-Arne Lecture/Assignment Assets */
+
 #ifndef PIT_H
 #define PIT_H
 
 #include "libc/stdint.h"
-#include "common.h"
+#include "port.h"
 #include "system.h"
 #include "io/display.h"
 #include "interrupt/isr.h"

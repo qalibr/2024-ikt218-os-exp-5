@@ -1,16 +1,14 @@
+/* Source: 
+- https://medium.com/@noransaber685/creating-a-custom-printf-function-in-c-a-step-by-step-guide-432fd2ecf48a
+- https://scientyficworld.org/how-to-write-my-own-printf-in-c/
+- https://stackoverflow.com/questions/54352400/implementation-of-printf-function 
+- UiA, Per-Arne Lecture/Assignment Assets */
+
 #include "libc/stdarg.h"
 #include "libc/stdbool.h"
 #include "libc/stdint.h"
-
 #include "io/display.h"
 #include "system.h"
-
-/*
-Sources:
-https://medium.com/@noransaber685/creating-a-custom-printf-function-in-c-a-step-by-step-guide-432fd2ecf48a
-https://scientyficworld.org/how-to-write-my-own-printf-in-c/
-https://stackoverflow.com/questions/54352400/implementation-of-printf-function
-*/
 
 int putchar(int ic) {
     char c = (char)ic;

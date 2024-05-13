@@ -1,26 +1,28 @@
+/* Source: UiA, Per-Arne Lecture/Assignment Assets */
+
 #include "memory/memory.h"
 
 #define MAX_PAGE_ALIGNED_ALLOCS 32
 
-uint32_t lastAlloc = 0;
-uint32_t heapEnd = 0;
-uint32_t heapBegin = 0;
-uint32_t pheapBegin = 0;
-uint32_t pheapEnd = 0;
-uint8_t *pheapDesc = 0;
-uint32_t memoryUsed = 0;
+uint32_t lastAlloc = 0;     // End of the last alloc
+uint32_t heapEnd = 0;       // End address of the heap
+uint32_t heapBegin = 0;     // Start address of the heap
+uint32_t pheapBegin = 0;    // Page aligned heap
+uint32_t pheapEnd = 0;      // Page aligned heap
+uint8_t *pheapDesc = 0;     // Descriptor array for page-aligned allocs
+uint32_t memoryUsed = 0;    // Total memory used
 
 void InitKernelMemory(uint32_t *kernelEnd) {
-    lastAlloc = (uint32_t)(kernelEnd + 0x1000);
+    lastAlloc = (uint32_t)(kernelEnd + 0x1000);             // Setting lastAlloc to one page after kernel
     heapBegin = lastAlloc;
     
     pheapEnd = 0x400000;
     pheapBegin = pheapEnd - (MAX_PAGE_ALIGNED_ALLOCS * 4096);
 
     heapEnd = pheapBegin;
-    memset((uint8_t*)heapBegin, 0, heapEnd - heapBegin);
+    memset((uint8_t*)heapBegin, 0, heapEnd - heapBegin);    // Zero the heap
 
-    pheapDesc = (uint8_t*)Malloc(MAX_PAGE_ALIGNED_ALLOCS);
+    pheapDesc = (uint8_t*)Malloc(MAX_PAGE_ALIGNED_ALLOCS);  // Allocating memory for descriptors
     printf("Kernel heap begins at 0x%x\n", lastAlloc);
 }
 
@@ -34,9 +36,9 @@ void PrintMemoryLayout() {
 }
 
 void Free(void *mem) {
-    alloc_t *alloc = (mem - sizeof(alloc_t));
-    memoryUsed -= alloc->size + sizeof(alloc_t);
-    alloc->status = 0;
+    alloc_t *alloc = (mem - sizeof(alloc_t));               // Access alloc information
+    memoryUsed -= alloc->size + sizeof(alloc_t);            // Adjusting memory used tracking
+    alloc->status = 0;                                      // Mark this alloc as free
     printf("Freed %d bytes from 0x%x to 0x%x.\n", alloc->size, (uint32_t)mem, (uint32_t)mem + alloc->size);
 }
 
@@ -48,14 +50,14 @@ void PFree(void *mem) {
     id -= pheapBegin;
     id /= 4096;
 
-    pheapDesc[id] = 0; // Free page descriptor
+    pheapDesc[id] = 0;                                      // Free page descriptor
 }
 
 char *PMalloc(size_t size) {
     for (int i = 0; i < MAX_PAGE_ALIGNED_ALLOCS; i++) {
-        if (pheapDesc[i]) continue;
+        if (pheapDesc[i]) continue;                         // Skip pages that are already allocated
 
-        pheapDesc[i] = 1;
+        pheapDesc[i] = 1;                                   // Mark as used
         printf("PAllocated from 0x%x to 0x%x\n", pheapBegin + i*4096, pheapBegin + (i + 1) * 4096);
         return (char *)(pheapBegin + i * 4096);        
     }

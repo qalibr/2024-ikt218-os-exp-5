@@ -1,3 +1,5 @@
+/* Source: UiA, Per-Arne Lecture/Assignment Assets */
+
 #include "io/keyboard.h"
 
 bool isCapsLockEnabled = false;

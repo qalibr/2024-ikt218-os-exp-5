@@ -1,19 +1,21 @@
+/* Source:
+- UiA, Per-Arne Lecture/Assignment Assets
+- https://web.archive.org/web/20190206105749/http://www.jamesmolloy.co.uk/tutorial_html/4.-The%20GDT%20and%20IDT.html */
+
 #include "descriptors/idt.h"
 #include "memory/paging.h"
-#include "pit.h"
-
-
+#include "io/pit.h"
 #include "interrupt/isr.h"
 #include "libc/stddef.h"
 
 extern void IdtFlush(uint32_t idtPtr);
 
 void IdtSetGate(uint8_t num, uint32_t base, uint16_t selector, uint8_t flags) {
-    idt[num].baseLow = base & 0xFFFF;
-    idt[num].selector = selector;
+    idt[num].baseLow = base & 0xFFFF;           // Lower 16 bits of the handler function's address
+    idt[num].selector = selector;               // Selector of the GDT
     idt[num].always0 = 0;
-    idt[num].flags = flags | 0x60;
-    idt[num].baseHigh = (base >> 16) & 0xFFFF;
+    idt[num].flags = flags | 0x60;              // Allow broad access to kernel interrupts
+    idt[num].baseHigh = (base >> 16) & 0xFFFF;  // Upper 16 bits of the handler function's address
 }
 
 void InstallIdt() {
@@ -25,7 +27,7 @@ void InstallIdt() {
         idt[i].baseLow = 0x0000;
         idt[i].selector = 0x08;
         idt[i].always0 = 0x00;
-        idt[i].flags = 0x8E;
+        idt[i].flags = 0x8E;                    // Present, ring 0, 32-bit interrupt gate
         idt[i].baseHigh = 0x0000;
 
         interruptHandlers[i].handler = NULL;
@@ -44,6 +46,7 @@ void InstallIdt() {
     OutPortByte(0x21, 0x0);
     OutPortByte(0xA1, 0x0);
 
+    // Setting entries for interrupt service routines and interrupt requests
     IdtSetGate(0, (uint32_t)Isr0, 0x08, 0x8E);
     IdtSetGate(1, (uint32_t)Isr1, 0x08, 0x8E);
     IdtSetGate(2, (uint32_t)Isr2, 0x08, 0x8E);

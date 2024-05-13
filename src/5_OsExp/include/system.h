@@ -1,8 +1,6 @@
-/*
- * sources: 
- *      https://web.archive.org/web/20190309070619/http://www.jamesmolloy.co.uk/tutorial_html/4.-The%20GDT%20and%20IDT.html
- *      
- */
+/* Source: 
+- https://web.archive.org/web/20190309070619/http://www.jamesmolloy.co.uk/tutorial_html/4.-The%20GDT%20and%20IDT.html
+- UiA, Per-Arne Lecture/Assignment Assets */
 
 #ifndef SYSTEM_H
 #define SYSTEM_H

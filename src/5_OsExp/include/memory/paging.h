@@ -1,3 +1,5 @@
+/* Source: UiA, Per-Arne Lecture/Assignment Assets */
+
 #ifndef PAGING_H
 #define PAGING_H
 

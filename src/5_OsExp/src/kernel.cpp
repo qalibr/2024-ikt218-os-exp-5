@@ -4,12 +4,13 @@ extern "C" {
     #include "libc/stdio.h"
     #include "libc/stdbool.h"
     #include "libc/stddef.h"
-    #include "pit.h"
+    #include "io/pit.h"
     #include "io/keyboard.h"
     #include "io/display.h"
     #include "music/music.h"
 }
 
+/* Source: UiA, Per-Arne Lecture/Assignment Assets */
 /* ASSIGNMENT_4.1 Memory Management */
 void *operator new(size_t size) {
     return Malloc(size);
@@ -71,6 +72,7 @@ int kernel_main(){
     // printf("\n");
     // SleepInterrupt(3000);
 
+    /* Source: UiA, Per-Arne Lecture/Assignment Assets */
     /* ASSIGNMENT_3.4 Keyboard Logger */
     InitKeyboard();
     

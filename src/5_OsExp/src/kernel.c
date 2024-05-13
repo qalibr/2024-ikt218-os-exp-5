@@ -1,3 +1,5 @@
+/* Source: UiA, Per-Arne Lecture/Assignment Assets */
+
 #include "libc/stdint.h"
 #include "libc/stddef.h"
 #include "libc/stdbool.h"
@@ -8,7 +10,7 @@
 #include "descriptors/gdt.h"
 #include "descriptors/idt.h"
 #include "interrupt/isr.h"
-#include "pit.h"
+#include "io/pit.h"
 #include "memory/memory.h"
 #include "memory/paging.h"
 

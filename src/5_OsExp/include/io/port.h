@@ -1,6 +1,6 @@
-/*
- * SOURCE https://web.archive.org/web/20190302142203/http://www.jamesmolloy.co.uk/tutorial_html/3.-The%20Screen.html
- */
+/* Source: 
+- https://web.archive.org/web/20190302142203/http://www.jamesmolloy.co.uk/tutorial_html/3.-The%20Screen.html 
+- UiA, Per-Arne Lecture/Assignment Assets */
 
 #ifndef COMMON_H
 #define COMMON_H

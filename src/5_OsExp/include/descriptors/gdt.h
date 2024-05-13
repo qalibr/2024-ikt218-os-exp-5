@@ -1,3 +1,5 @@
+/* Source: https://web.archive.org/web/20190206105749/http://www.jamesmolloy.co.uk/tutorial_html/4.-The%20GDT%20and%20IDT.html */
+
 #ifndef GDT_H
 #define GDT_H
 

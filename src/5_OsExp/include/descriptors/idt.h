@@ -1,8 +1,12 @@
+/* Source:
+- UiA, Per-Arne Lecture/Assignment Assets
+- https://web.archive.org/web/20190206105749/http://www.jamesmolloy.co.uk/tutorial_html/4.-The%20GDT%20and%20IDT.html */
+
 #ifndef IDT_H
 #define IDT_H
 
 #include "libc/stdint.h"
-#include "common.h"
+#include "io/port.h"
 #include "system.h"
 #include "io/display.h"
 #include "libc/string.h"
