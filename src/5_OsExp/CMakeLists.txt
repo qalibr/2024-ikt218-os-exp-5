@@ -69,7 +69,7 @@ add_executable(uiaos-kernel
 	src/libc/string.c
 	src/libc/stdio.c
 	src/common.c
-	src/display.c
+	src/io/display.c
 	src/system.c
 	src/descriptors/gdt.c
 	src/descriptors/idt.c

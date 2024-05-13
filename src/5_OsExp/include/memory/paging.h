@@ -5,7 +5,7 @@
 #include "libc/stddef.h"
 #include "libc/stdio.h"
 #include "system.h"
-#include "display.h"
+#include "io/display.h"
 
 // Mapping virtual to physical address.
 extern void PagingMap(uint32_t virtual, uint32_t physical);

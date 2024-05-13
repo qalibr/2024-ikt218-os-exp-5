@@ -3,7 +3,7 @@
 
 #include "libc/stdint.h"
 #include "system.h"
-#include "display.h"
+#include "io/display.h"
 #include "libc/string.h"
 #include "common.h"
 #include "descriptors/idt.h"

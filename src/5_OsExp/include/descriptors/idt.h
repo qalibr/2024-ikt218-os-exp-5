@@ -4,7 +4,7 @@
 #include "libc/stdint.h"
 #include "common.h"
 #include "system.h"
-#include "display.h"
+#include "io/display.h"
 #include "libc/string.h"
 
 #define IDT_ENTRIES 256

@@ -4,7 +4,7 @@
  *      http://www.osdever.net/bkerndev/Docs/printing.htm
  */
 
-#include "display.h"
+#include "io/display.h"
 #include "common.h"
 
 enum VGA_COLOR {

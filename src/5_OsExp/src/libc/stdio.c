@@ -2,7 +2,7 @@
 #include "libc/stdbool.h"
 #include "libc/stdint.h"
 
-#include "display.h"
+#include "io/display.h"
 #include "system.h"
 
 /*

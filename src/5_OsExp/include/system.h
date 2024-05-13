@@ -11,7 +11,7 @@
 #include "libc/stddef.h"
 #include "libc/stdio.h"
 #include "libc/stdbool.h"
-#include "display.h"
+#include "io/display.h"
 
 #define EOF (-1)
 

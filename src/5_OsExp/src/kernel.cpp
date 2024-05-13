@@ -6,6 +6,7 @@ extern "C" {
     #include "libc/stddef.h"
     #include "pit.h"
     #include "io/keyboard.h"
+    #include "io/display.h"
     #include "music/music.h"
 }
 
@@ -74,8 +75,8 @@ int kernel_main(){
     InitKeyboard();
     
     Tune *tunes[] = {
-        new Tune({battlefield_1942_theme, sizeof(battlefield_1942_theme) / sizeof(Note)}),
-        new Tune({starwars_theme, sizeof(starwars_theme) / sizeof(Note)}),
+        new Tune( { battlefield_1942_theme, sizeof(battlefield_1942_theme) / sizeof(Note) } ),
+        new Tune( { starwars_theme, sizeof(starwars_theme) / sizeof(Note) } ),
     };
 
     uint32_t playlistSize = sizeof(tunes) / sizeof(Tune *);

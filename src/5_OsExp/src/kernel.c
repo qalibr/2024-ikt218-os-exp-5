@@ -3,7 +3,7 @@
 #include "libc/stdbool.h"
 #include <multiboot2.h>
 
-#include "display.h"
+#include "io/display.h"
 #include "libc/stdio.h"
 #include "descriptors/gdt.h"
 #include "descriptors/idt.h"
@@ -33,9 +33,9 @@ int main(uint32_t magic, struct multiboot_info* mb_info_addr) {
     PrintMemoryLayout();            /* ASSIGNMENT_4 */
    
     /* ASSIGNMENT_2.2 Hello, World! */
-    DisplayWrite("Hello, World!\n");
-    int i = 5;
-    printf("Print 5: %d\n", i + 5);
+    // DisplayWrite("Hello, World!\n");
+    // int i = 5;
+    // printf("Print 5: %d\n", i + 5);
 
     /* ASSIGNMENT_3.2 Induce interrupt */
     //asm volatile("int $0x3");
