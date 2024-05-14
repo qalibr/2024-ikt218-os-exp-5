@@ -3,9 +3,8 @@
 ; http://www.osdever.net/bkerndev/Docs/gdt.htm
 
 global GdtFlush
-
 GdtFlush:
-    mov eax, [esp+4]
+    mov eax, [esp+4]    ; Move ESP + 4 into EAX (our pointer)
     lgdt [eax]          ; Loading our pointer into the GDT
 
     mov ax, 0x10        ; 0x10 is the offset to the data segment
