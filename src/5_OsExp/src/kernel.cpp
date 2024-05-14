@@ -41,12 +41,13 @@ extern "C" int kernel_main(void);
 int kernel_main(){
 
     /* ASSIGNMENT_3.2 Induce interrupt */
-    // Upon return from this interrupt the program immediately
-    // raises error code 13 (general protection fault) and "crashes". 
+    // Upon return from this interrupt, the program immediately
+    //  raises error code 13 (general protection fault) and "crashes". 
     // The ISR handler likely mangles the return address.
     // We don't experience this with the IRQ handler. Not sure how to handle
-    // this error. We have tried looking for problems with the ISR handler,
-    // but that has proven extremely difficult.
+    //  this error. We have tried looking for problems with the ISR handler,
+    //  but that has proven extremely difficult.The music player works well,
+    //  and so does the keyboard logger..
     // RegisterInterruptHandler(ISR3, &InterruptThreeHandler, NULL);
     // asm volatile("int $0x03");
 
