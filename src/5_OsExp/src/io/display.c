@@ -98,8 +98,8 @@ void DisplayScroll() {
         size_t i;
 
         // Move every line up one row.
-        for (i = 0 * SCREEN_WIDTH; i < LAST_LINE * SCREEN_HEIGHT; i++) {
-            displayBuffer[i] = displayBuffer[i + 80];
+        for (i = 0; i < LAST_LINE * SCREEN_WIDTH; i++) {
+            displayBuffer[i] = displayBuffer[i + SCREEN_WIDTH];
         }
 
         // Clear the final line of the display.
