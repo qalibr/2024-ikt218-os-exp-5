@@ -36,7 +36,6 @@ uint8_t displayColor = (VGA_BLACK << 4) | (VGA_WHITE & 0x0F); // Default black b
 
 void DisplayPut(char c) {
     uint8_t attributeByte = displayColor;
-
     uint16_t attribute = attributeByte << 8;
     uint16_t *location;
 
@@ -45,7 +44,16 @@ void DisplayPut(char c) {
     if (c == 0x09)                  { cursorX = (cursorX + 8) & ~(8-1); }
     if (c == '\r')                  { cursorX = 0; }
     if (c == '\n')                  { cursorX = 0; cursorY++; }
-    if (c >= ' ')                   { location = displayBuffer + (cursorY * SCREEN_WIDTH + cursorX); *location = c | attribute; cursorX++; }
+    if (c >= ' ') { 
+        // Points to where character should be placed.
+        location = displayBuffer + (cursorY * SCREEN_WIDTH + cursorX); 
+
+        // Combine character and attribute (color)
+        *location = c | attribute;  
+        
+        // Increment cursor now that character was placed
+        cursorX++; 
+    }
     
     // See if we must insert a newline because we reached the end of the screen.
     if (cursorX >= SCREEN_WIDTH)    { cursorX = 0; cursorY++; }

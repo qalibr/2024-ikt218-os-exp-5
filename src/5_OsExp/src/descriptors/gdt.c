@@ -19,16 +19,16 @@ void InstallGdt() {
 
 void GdtSetGate(int num, uint32_t base, uint32_t limit, uint8_t access, uint8_t granularity) {
 
-        // Base addresses in the descriptor, length 32 bits
-        gdt[num].baseLow = (base & 0xFFFF);             // Lower 16 bits, AND'ing bitmask to preserve 16 bits.
-        gdt[num].baseMiddle = (base >> 16) & 0xFF;      // Middle 8 bits, AND'ing bitmask to preserve 8 bits, shifted right 16 spaces
-        gdt[num].baseHigh = (base >> 24) & 0xFF;        // High 8 bits, AND'ing bitmask to preserve 8 bits, shifted right 24 spaces
+    // Base addresses in the descriptor, length 32 bits
+    gdt[num].baseLow = (base & 0xFFFF);             // Lower 16 bits, AND'ing bitmask to preserve 16 bits.
+    gdt[num].baseMiddle = (base >> 16) & 0xFF;      // Middle 8 bits, AND'ing bitmask to preserve 8 bits, shifted right 16 spaces
+    gdt[num].baseHigh = (base >> 24) & 0xFF;        // High 8 bits, AND'ing bitmask to preserve 8 bits, shifted right 24 spaces
 
-        // Limits of the descriptor
-        gdt[num].limitLow = (limit & 0xFFFF);
-        gdt[num].granularity = (limit >> 16) & 0x0F;    // High 4 bits of the limit, shifted right 16 spaces
+    // Limits of the descriptor
+    gdt[num].limitLow = (limit & 0xFFFF);
+    gdt[num].granularity = (limit >> 16) & 0x0F;    // High 4 bits of the limit, shifted right 16 spaces
 
-        // Granularity and access flags in the descriptor
-        gdt[num].granularity |= granularity & 0xF0;     // Granularity 4 bits (upper nibble), OR'ed with gran
-        gdt[num].access = access;                       // Access flags 8 bits
+    // Granularity and access flags in the descriptor
+    gdt[num].granularity |= granularity & 0xF0;     // Granularity 4 bits (upper nibble), OR'ed with gran
+    gdt[num].access = access;                       // Access flags 8 bits
 }
