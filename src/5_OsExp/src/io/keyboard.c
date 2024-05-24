@@ -99,11 +99,15 @@ void KeyboardIrqHandler(Registers_t *r, void *context) {
     {
     case 'c':
     case 'C':
-        MusicRestarter();
+        MusicRestart();
+        break;
+    case 'v':
+    case 'V':
+        MusicNext();
         break;
     case 'x':
     case 'X':
-        MusicContinuer();
+        MusicContinue();
         break;
     default:
         break;

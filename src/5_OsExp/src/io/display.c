@@ -176,18 +176,16 @@ void DisplayWriteHex(uint32_t hex) {
     DisplayWrite(&buffer[i + 1]);
 }
 
-void DisplayMoveCursorToLocAndWriteInfo(size_t x, size_t y, uint32_t length, uint32_t freq) {
+void DisplayMoveCursorToLocAndWriteDec(size_t x, size_t y, uint32_t dec, const char *descr) {
     size_t tempCursorLocX = cursorX;
     size_t tempCursorLocY = cursorY;
 
     cursorX = x;
     cursorY = y;
 
-    DisplayWrite("Song Length: ");
-    DisplayWriteDec(length);
-
-    DisplayWrite(", Frequency: ");
-    DisplayWriteDec(freq);
+    DisplayWrite(descr);
+    DisplayWriteDec(dec);
+    DisplayWrite("\n");
 
     // Restore cursor
     cursorX = tempCursorLocX;

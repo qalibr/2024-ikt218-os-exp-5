@@ -20,6 +20,7 @@ typedef struct {
 } Note;
 
 typedef struct {
+    const char *name;
     Note* notes;
     uint32_t length;
 } Tune;
@@ -40,8 +41,9 @@ void RenderMusicScreen(const Tune *tune, uint32_t currentNoteIndex);
 void UpdateBusyAnimation(uint32_t step);
 
 bool IsMusicPlaying();
-void MusicRestarter();
-void MusicContinuer();
+void MusicRestart();
+void MusicContinue();
+void MusicNext();
 
 static Note music_1[] = {
     {E5, 250}, {R, 125}, {E5, 125}, {R, 125}, {E5, 125}, {R, 125},

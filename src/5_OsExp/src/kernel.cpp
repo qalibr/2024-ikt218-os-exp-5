@@ -111,8 +111,14 @@ int kernel_main(){
     InitKeyboard();
     
     Tune *tunes[] = {
-        new Tune( { battlefield_1942_theme, sizeof(battlefield_1942_theme) / sizeof(Note) } ),
-        new Tune( { starwars_theme, sizeof(starwars_theme) / sizeof(Note) } ),
+        new Tune( { "starwars_theme", starwars_theme, sizeof(starwars_theme) / sizeof(Note) } ),
+        new Tune( { "music_1", music_1, sizeof(music_1) / sizeof(Note)}),
+        new Tune( { "music_2", music_2, sizeof(music_2) / sizeof(Note)}),
+        new Tune( { "music_3", music_3, sizeof(music_3) / sizeof(Note)}),
+        new Tune( { "music_4", music_4, sizeof(music_4) / sizeof(Note)}),
+        new Tune( { "music_5", music_5, sizeof(music_5) / sizeof(Note)}),
+        new Tune( { "music_6", music_6, sizeof(music_6) / sizeof(Note)}),
+        new Tune( { "battlefield_1942_theme", battlefield_1942_theme, sizeof(battlefield_1942_theme) / sizeof(Note) } ),
     };
 
     uint32_t playlistSize = sizeof(tunes) / sizeof(Tune *);

@@ -11,17 +11,21 @@
 const size_t infoX = 6;
 const size_t infoY = 1;
 const size_t controllsInfoX = infoX;
-const size_t controllsInfoY = 2;
+const size_t controllsInfoY = 6;
 const size_t animationX = 0;
 const size_t animationY = 1;
 
 /* Control Music Player */
 bool playingMusic = true;
-void MusicRestarter() {
+bool skipTune = false;
+void MusicRestart() {
     playingMusic = false;
 }
-void MusicContinuer() {
+void MusicContinue() {
     playingMusic = true;
+}
+void MusicNext() {
+    skipTune = true;
 }
 bool IsMusicPlaying() {
     return playingMusic;
@@ -29,12 +33,20 @@ bool IsMusicPlaying() {
 
 void RenderMusicScreen(const Tune *tune, uint32_t currentNoteIndex) {
     DisplayClear();
+    const char *descriptionLength = "->Length: ";
+    const char *descriptionFreq = "->Freq: ";
+
     const char *controllsRow3 = "[x] - Play\n";
     const char *controllsRow4 = "[c] - Reset\n";
+    const char *controllsRow5 = "[v] - Next\n";
 
-    DisplayMoveCursorToLocAndWriteInfo(infoX, infoY, tune->length, tune->notes[currentNoteIndex].frequency);
+    DisplayMoveCursorToLocAndWrite(infoX, infoY, tune->name);
+    DisplayMoveCursorToLocAndWriteDec(infoX, infoY + 1, tune->length, descriptionLength);
+    DisplayMoveCursorToLocAndWriteDec(infoX, infoY + 2, tune->notes[currentNoteIndex].frequency, descriptionFreq);
+
     DisplayMoveCursorToLocAndWrite(controllsInfoX, controllsInfoY, controllsRow3);
     DisplayMoveCursorToLocAndWrite(controllsInfoX, controllsInfoY + 1, controllsRow4);
+    DisplayMoveCursorToLocAndWrite(controllsInfoX, controllsInfoY + 2, controllsRow5);
 }
 
 void UpdateBusyAnimation(uint32_t step) {
@@ -82,11 +94,19 @@ void PlayMusic(Tune *tune) {
         uint32_t updateInterval = 50;
         uint32_t numUpdates = note->duration / updateInterval;
         for (uint32_t step = 0; step < numUpdates && playingMusic; step++) {
+            if (skipTune) {
+                break;
+            }
+
             RenderMusicScreen(tune, i);
             UpdateBusyAnimation(step);
             SleepInterrupt(updateInterval);
         }
         StopSound();
+        if (skipTune) {
+            skipTune = false;
+            break;
+        }
     }
     DisableSpeaker();
 
