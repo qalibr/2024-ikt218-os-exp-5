@@ -6,19 +6,14 @@
 
 // Generic ISR handler that is called when an interrupt is caught.
 void IsrHandler(Registers_t r) {
-    // Check if a specific handler is associated with the interrupt.
-    // if (interruptHandlers[r.int_no] != 0) {
-    //     isr_t handler = interruptHandlers[r.int_no];
-    //     handler(&r, NULL);
-    // }
-
-    uint8_t int_no = r.int_no & 0xFF;
-    struct interruptHandler_t interrupt = interruptHandlers[int_no];
+    uint8_t int_no = r.int_no & 0xFF;                                       // Get interrupt code from stack frame
+    struct interruptHandler_t interrupt = interruptHandlers[int_no];        // Use interrupt code to find the corresponding interrupt handler
 
     if (interrupt.handler != 0) {
         interrupt.handler(&r, interrupt.data);
+        // printf("PING!\n");
     } else {
-        DisplayWrite("Caught interrupt: ");
+        DisplayWrite("Caught interrupt: "); // We come here if an interrupt was not handled by a registered interrupt handler.
         DisplayWriteDec(r.int_no);
         DisplayPut('\n');
         for(;;) ;
@@ -37,12 +32,6 @@ void IrqHandler(Registers_t r) {
     if (interrupt.handler != 0) {
         interrupt.handler(&r, interrupt.data);
     }
-
-    // // Check is a specific handler is associated with the interrupt.
-    // if (interruptHandlers[r->int_no] != 0) {
-    //     isr_t handler = interruptHandlers[r->int_no];
-    //     handler(r, NULL);
-    // }
 }
 
 void RegisterInterruptHandler(uint8_t n, isr_t handler, void *context) {

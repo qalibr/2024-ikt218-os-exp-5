@@ -1,4 +1,9 @@
-/* Source: UiA, Per-Arne Lecture/Assignment Assets */
+/* Source: UiA, Per-Arne Lecture/Assignment Assets
+
+    And,    
+    UiA IKT218 2024V
+    Group-5 
+*/
 
 #ifndef PIT_H
 #define PIT_H
@@ -27,7 +32,7 @@
 #define PIT_BASE_FREQUENCY 1193180
 #define TARGET_FREQUENCY 1000
 #define DIVIDER (PIT_BASE_FREQUENCY / TARGET_FREQUENCY)
-#define TICKS_PER_MS (TARGET_FREQUENCY / TARGET_FREQUENCY)
+#define TICKS_PER_MS (TARGET_FREQUENCY / TARGET_FREQUENCY) // ?
 
 void InitPit();
 

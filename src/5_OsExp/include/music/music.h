@@ -31,6 +31,9 @@ void PlaySound(uint32_t freq);
 void StopSound();
 void PlayMusic(Tune *tune);
 
+void RenderMusicScreen(const Tune *tune, uint32_t currentNoteIndex);
+void UpdateBusyAnimation(uint32_t step);
+
 static Note music_1[] = {
     {E5, 250}, {R, 125}, {E5, 125}, {R, 125}, {E5, 125}, {R, 125},
     {C5, 125}, {E5, 125}, {G5, 125}, {R, 125}, {G4, 125}, {R, 250},

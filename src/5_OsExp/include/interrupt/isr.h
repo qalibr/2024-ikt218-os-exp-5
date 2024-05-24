@@ -14,7 +14,7 @@
 
 #define IRQ_COUNT 16
 
-typedef void (*isr_t)(Registers_t*, void*);
+typedef void (*isr_t)(Registers_t*, void*); // Function pointer with arguments: registers, and context (data).
 struct interruptHandler_t {
     int num;
     isr_t handler;
@@ -32,6 +32,7 @@ static struct interruptHandler_t irqHandlers[IRQ_COUNT];
 void RegisterIrqHandler(uint8_t irq, isr_t handler, void *context);
 void InitIrqHandlers();
 
+#define ISR0 0
 #define ISR1 1
 #define ISR2 2
 #define ISR3 3

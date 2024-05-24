@@ -1,6 +1,27 @@
-/* Source: UiA, Per-Arne Lecture/Assignment Assets */
+/* Source: UiA, Per-Arne Lecture/Assignment Assets
+
+    And,    
+    UiA IKT218 2024V
+    Group-5 
+*/
 
 #include "music/music.h"
+
+const size_t infoX = 5;
+const size_t infoY = 1;
+const size_t animationX = 0;
+const size_t animationY = 1;
+
+void RenderMusicScreen(const Tune *tune, uint32_t currentNoteIndex) {
+    DisplayClear();
+    char info[75]; // Screen width - 5
+    DisplayMoveCursorToLocAndWriteInfo(infoX, infoY, tune->length, tune->notes[currentNoteIndex].frequency);
+}
+
+void UpdateBusyAnimation(uint32_t step) {
+    const char *animationStates[4] = { "[   ]", "[.  ]", "[.. ]", "[...]"};
+    DisplayMoveCursorToLocAndWriteAnimation(animationX, animationY, animationStates[step % 4]);
+}
 
 void EnableSpeaker() {
     uint8_t speakerState = InPortByte(PC_SPEAKER_PORT);
@@ -37,10 +58,16 @@ void PlayMusic(Tune *tune) {
     EnableSpeaker();
     for (uint32_t i = 0; i < tune->length; i++) {
         Note *note = &tune->notes[i];
-        printf("Note: %d, Freq=%d, Sleep=%d\n", i, note->frequency, note->duration);
-        PlaySound(note->frequency);         // Take current note's frequency and play sound
-        SleepInterrupt(note->duration);     // Play the note for it's duration
-        StopSound();                        // Stop sound
+        PlaySound(note->frequency);
+
+        uint32_t updateInterval = 50;
+        uint32_t numUpdates = note->duration / updateInterval;
+        for (uint32_t step = 0; step < numUpdates; step++) {
+            RenderMusicScreen(tune, i);
+            UpdateBusyAnimation(step);
+            SleepInterrupt(updateInterval);
+        }
+        StopSound();
     }
     DisableSpeaker();
 }
@@ -56,3 +83,4 @@ MusicPlayer* CreateMusicPlayer() {
 
     return player;
 }
+

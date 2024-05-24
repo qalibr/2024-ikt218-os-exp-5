@@ -8,6 +8,7 @@ extern "C" {
     #include "io/keyboard.h"
     #include "io/display.h"
     #include "music/music.h"
+    #include "io/musicScreen.h"
 }
 
 /* Source: UiA, Per-Arne Lecture/Assignment Assets */
@@ -37,6 +38,14 @@ void InterruptThreeHandler(Registers_t *r, void *context) {
     printf("Interrupt 3 - OK\n");
 }
 
+void InterruptFourHandler(Registers_t *r, void *context) {
+    printf("Interrupt 4 - OK\n");
+}
+
+void InterruptFiveHandler(Registers_t *r, void *context) {
+    printf("Interrupt 5 - OK\n");
+}
+
 extern "C" int kernel_main(void);
 int kernel_main(){
 
@@ -48,8 +57,13 @@ int kernel_main(){
     //  this error. We have tried looking for problems with the ISR handler,
     //  but that has proven extremely difficult.The music player works well,
     //  and so does the keyboard logger..
-    // RegisterInterruptHandler(ISR3, &InterruptThreeHandler, NULL);
-    // asm volatile("int $0x03");
+    // UPDATE. Changed ebx to eax in interrupt.asm (ISR handler).
+    RegisterInterruptHandler(ISR3, &InterruptThreeHandler, NULL);
+    RegisterInterruptHandler(ISR4, &InterruptFourHandler, NULL);
+    RegisterInterruptHandler(ISR5, &InterruptFiveHandler, NULL);
+    asm volatile("int $0x03");
+    asm volatile("int $0x04");
+    asm volatile("int $0x05");
 
     /* ASSIGNMENT_4.1 Memory Management */
     // DisplayClear();

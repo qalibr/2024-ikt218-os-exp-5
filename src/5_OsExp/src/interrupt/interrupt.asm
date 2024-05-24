@@ -14,7 +14,6 @@
 %macro ISR_NOERRCODE 1
   global Isr%1
   Isr%1:
-    ;cli                
     push 0         
     push %1            
     jmp IsrCommonHandler
@@ -24,7 +23,6 @@
 %macro ISR_ERRCODE 1
   global Isr%1
   Isr%1:
-    ;cli                     
     push %1                 
     jmp IsrCommonHandler
 %endmacro
@@ -32,7 +30,6 @@
 %macro IRQ 2
   global Irq%1
   Irq%1:
-    ;cli
     push 0
     push %2
     jmp IrqCommonHandler
@@ -86,7 +83,7 @@ IsrCommonHandler:
 
     call IsrHandler
 
-    pop ebx
+    pop eax
     mov ds, ax              ; Segment registers
     mov es, ax
     mov fs, ax
@@ -94,7 +91,6 @@ IsrCommonHandler:
 
     popa                    ; Restore remaining registers
     add esp, 8              ; Clean up the pushed error code and pushed ISR number
-    ; sti
     iret                    ; Returning from interrupt and pop CS, EIP, EFLAGS, SS, and ESP simultaneously.
 
 
@@ -144,5 +140,4 @@ IrqCommonHandler:
 
   popa    
   add esp, 8    
-  ; sti
   iret     

@@ -175,3 +175,36 @@ void DisplayWriteHex(uint32_t hex) {
     // Now, buffer[i + 1] points to the first character of the string
     DisplayWrite(&buffer[i + 1]);
 }
+
+void DisplayMoveCursorToLocAndWriteInfo(size_t x, size_t y, uint32_t length, uint32_t freq) {
+    size_t tempCursorLocX = cursorX;
+    size_t tempCursorLocY = cursorY;
+
+    cursorX = x;
+    cursorY = y;
+
+    DisplayWrite("Song Length: ");
+    DisplayWriteDec(length);
+
+    DisplayWrite(", Frequency: ");
+    DisplayWriteDec(freq);
+
+    // Restore cursor
+    cursorX = tempCursorLocX;
+    cursorY = tempCursorLocY;
+}
+
+
+void DisplayMoveCursorToLocAndWriteAnimation(size_t x, size_t y, const char *state) {
+    size_t tempCursorLocX = cursorX;
+    size_t tempCursorLocY = cursorY;
+
+    cursorX = x;
+    cursorY = y;
+
+    DisplayWrite(state);
+
+    // Restore cursor
+    cursorX = tempCursorLocX;
+    cursorY = tempCursorLocY;
+}
