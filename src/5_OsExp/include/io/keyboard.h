@@ -11,6 +11,7 @@
 #include "libc/stdio.h"
 #include "system.h"
 #include "interrupt/isr.h"
+#include "music/music.h"
 
 char ScancodeToAscii(uint8_t *scanCode);
 

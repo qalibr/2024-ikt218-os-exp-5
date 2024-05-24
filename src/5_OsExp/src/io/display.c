@@ -208,3 +208,21 @@ void DisplayMoveCursorToLocAndWriteAnimation(size_t x, size_t y, const char *sta
     cursorX = tempCursorLocX;
     cursorY = tempCursorLocY;
 }
+
+void DisplayMoveCursorToLocAndWrite(size_t x, size_t y, const char *content) {
+    size_t tempCursorLocX = cursorX;
+    size_t tempCursorLocY = cursorY;
+
+    cursorX = x;
+    cursorY = y;
+
+    DisplayWrite(content);
+
+    // Restore cursor
+    cursorX = tempCursorLocX;
+    cursorY = tempCursorLocY;
+}
+
+void DisplayHideCursor() {
+    // TODO
+}

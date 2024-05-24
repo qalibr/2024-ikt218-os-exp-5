@@ -1,3 +1,10 @@
+/* Source: UiA, Per-Arne Lecture/Assignment Assets
+
+    And,    
+    UiA IKT218 2024V
+    Group-5 
+*/
+
 extern "C" {
     #include "memory/memory.h"
     #include "interrupt/isr.h"
@@ -87,6 +94,18 @@ int kernel_main(){
     // printf("\n");
     // SleepInterrupt(3000);
 
+    // Cannot have this fancy stuff, because if someone pushes 'c' or 'x'
+    // during this timer the controlls will not work.
+    // bool pauseOneMoment = true;
+    // while (pauseOneMoment) {
+    //     for (int i = 1; i <= 3; i++) {
+    //         printf("Starting Music Player: %ds\n", i);
+    //         SleepInterrupt(1000);
+    //     }
+    //     pauseOneMoment = false;
+    //     SleepInterrupt(200);
+    // }
+
     /* Source: UiA, Per-Arne Lecture/Assignment Assets */
     /* ASSIGNMENT_3.4 Keyboard Logger */
     InitKeyboard();
@@ -97,13 +116,13 @@ int kernel_main(){
     };
 
     uint32_t playlistSize = sizeof(tunes) / sizeof(Tune *);
-
-    DisplayClear();
-    printf("~ MUSIC ~\n");
     MusicPlayer *boomblaster = CreateMusicPlayer();
-    for (uint32_t i = 0; i < playlistSize; i++) {
-        boomblaster->playTune(tunes[i]);
+    while (true) {
+        for (uint32_t i = 0; i < playlistSize && IsMusicPlaying(); i++) {
+            boomblaster->playTune(tunes[i]);
+        }
     }
+
 
     for (;;) ;
     return 0;

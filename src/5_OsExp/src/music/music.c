@@ -7,15 +7,34 @@
 
 #include "music/music.h"
 
-const size_t infoX = 5;
+/* Static Graphics Placement */
+const size_t infoX = 6;
 const size_t infoY = 1;
+const size_t controllsInfoX = infoX;
+const size_t controllsInfoY = 2;
 const size_t animationX = 0;
 const size_t animationY = 1;
 
+/* Control Music Player */
+bool playingMusic = true;
+void MusicRestarter() {
+    playingMusic = false;
+}
+void MusicContinuer() {
+    playingMusic = true;
+}
+bool IsMusicPlaying() {
+    return playingMusic;
+}
+
 void RenderMusicScreen(const Tune *tune, uint32_t currentNoteIndex) {
     DisplayClear();
-    char info[75]; // Screen width - 5
+    const char *controllsRow3 = "[x] - Play\n";
+    const char *controllsRow4 = "[c] - Reset\n";
+
     DisplayMoveCursorToLocAndWriteInfo(infoX, infoY, tune->length, tune->notes[currentNoteIndex].frequency);
+    DisplayMoveCursorToLocAndWrite(controllsInfoX, controllsInfoY, controllsRow3);
+    DisplayMoveCursorToLocAndWrite(controllsInfoX, controllsInfoY + 1, controllsRow4);
 }
 
 void UpdateBusyAnimation(uint32_t step) {
@@ -56,13 +75,13 @@ void StopSound() {
 
 void PlayMusic(Tune *tune) {
     EnableSpeaker();
-    for (uint32_t i = 0; i < tune->length; i++) {
+    for (uint32_t i = 0; i < tune->length && playingMusic; i++) {
         Note *note = &tune->notes[i];
         PlaySound(note->frequency);
 
         uint32_t updateInterval = 50;
         uint32_t numUpdates = note->duration / updateInterval;
-        for (uint32_t step = 0; step < numUpdates; step++) {
+        for (uint32_t step = 0; step < numUpdates && playingMusic; step++) {
             RenderMusicScreen(tune, i);
             UpdateBusyAnimation(step);
             SleepInterrupt(updateInterval);
@@ -70,6 +89,10 @@ void PlayMusic(Tune *tune) {
         StopSound();
     }
     DisableSpeaker();
+
+    if (!playingMusic) {
+        printf("Music stopped.");
+    }
 }
 
 MusicPlayer* CreateMusicPlayer() {
@@ -83,4 +106,3 @@ MusicPlayer* CreateMusicPlayer() {
 
     return player;
 }
-

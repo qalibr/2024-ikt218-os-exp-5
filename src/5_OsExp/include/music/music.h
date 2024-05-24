@@ -1,4 +1,9 @@
-/* Source: UiA, Per-Arne Lecture/Assignment Assets */
+/* Source: UiA, Per-Arne Lecture/Assignment Assets
+
+    And,    
+    UiA IKT218 2024V
+    Group-5 
+*/
 
 #ifndef MUSIC_H
 #define MUSIC_H
@@ -33,6 +38,10 @@ void PlayMusic(Tune *tune);
 
 void RenderMusicScreen(const Tune *tune, uint32_t currentNoteIndex);
 void UpdateBusyAnimation(uint32_t step);
+
+bool IsMusicPlaying();
+void MusicRestarter();
+void MusicContinuer();
 
 static Note music_1[] = {
     {E5, 250}, {R, 125}, {E5, 125}, {R, 125}, {E5, 125}, {R, 125},

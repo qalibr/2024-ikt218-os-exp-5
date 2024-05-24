@@ -1,4 +1,9 @@
-/* Source: UiA, Per-Arne Lecture/Assignment Assets */
+/* Source: UiA, Per-Arne Lecture/Assignment Assets
+
+    And,    
+    UiA IKT218 2024V
+    Group-5 
+*/
 
 #include "io/keyboard.h"
 
@@ -52,7 +57,7 @@ char ScancodeToAscii(uint8_t *scanCode) {
         /* SPACE */
         return 3;
     case 58:
-        isCapsLockEnabled = !isCapsLockEnabled;
+        return isCapsLockEnabled = !isCapsLockEnabled;
     case 72:
         /* UP */
         return 0;
@@ -88,7 +93,21 @@ char ScancodeToAscii(uint8_t *scanCode) {
 void KeyboardIrqHandler(Registers_t *r, void *context) {
     uint8_t scancode = InPortByte(0x60);
     char ascii = ScancodeToAscii(&scancode);
-    printf("%c", ascii);
+    // printf("%c", ascii);
+
+    switch (ascii)
+    {
+    case 'c':
+    case 'C':
+        MusicRestarter();
+        break;
+    case 'x':
+    case 'X':
+        MusicContinuer();
+        break;
+    default:
+        break;
+    }
 }
 
 void InitKeyboard() {
