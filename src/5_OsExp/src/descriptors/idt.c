@@ -22,17 +22,7 @@ void InstallIdt() {
     idtPtr.limit = sizeof(struct idtEntry_t) * IDT_ENTRIES - 1;
     idtPtr.base = (uint32_t)&idt;
 
-    // MemSet((uint8_t *)&idt, 0, sizeof(struct idtEntry_t) * IDT_ENTRIES);
-    for (int i = 0; i < IDT_ENTRIES; i++) {
-        idt[i].baseLow = 0x0000;
-        idt[i].selector = 0x08;
-        idt[i].always0 = 0x00;
-        idt[i].flags = 0x8E;                    // Present, ring 0, 32-bit interrupt gate
-        idt[i].baseHigh = 0x0000;
-
-        interruptHandlers[i].handler = NULL;
-        interruptHandlers[i].data = NULL;
-    }
+    memset((uint8_t *)&idt, 0, sizeof(struct idtEntry_t) * IDT_ENTRIES);
 
     // Remapping IRQ table
     OutPortByte(0x20, 0x11);

@@ -8,6 +8,7 @@
 #include "libc/stdio.h"
 #include "libc/string.h"
 #include "system.h"
+#include "io/display.h"
 
 typedef struct {
     uint8_t status;
@@ -17,6 +18,8 @@ typedef struct {
 void InitKernelMemory(uint32_t *kernelEnd);
 
 void PrintMemoryLayout();
+
+void PrintAtCursorMemoryLayout(size_t x, size_t y);
 
 // Allocates memory of a given size and page alignment.
 extern char* PMalloc(size_t size);

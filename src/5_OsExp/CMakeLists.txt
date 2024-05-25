@@ -66,7 +66,6 @@ add_executable(uiaos-kernel
 	src/kernel.cpp
 
 	# 5_OsExp source files
-	src/io/musicScreen.c
 	src/libc/string.c
 	src/libc/stdio.c
 	src/io/port.c

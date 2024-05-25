@@ -15,7 +15,6 @@ extern "C" {
     #include "io/keyboard.h"
     #include "io/display.h"
     #include "music/music.h"
-    #include "io/musicScreen.h"
 }
 
 /* Source: UiA, Per-Arne Lecture/Assignment Assets */
@@ -71,6 +70,7 @@ int kernel_main(){
     asm volatile("int $0x03");
     asm volatile("int $0x04");
     asm volatile("int $0x05");
+    InitKeyboard();
 
     /* ASSIGNMENT_4.1 Memory Management */
     // DisplayClear();
@@ -94,21 +94,18 @@ int kernel_main(){
     // printf("\n");
     // SleepInterrupt(3000);
 
-    // Cannot have this fancy stuff, because if someone pushes 'c' or 'x'
-    // during this timer the controlls will not work.
-    // bool pauseOneMoment = true;
-    // while (pauseOneMoment) {
-    //     for (int i = 1; i <= 3; i++) {
-    //         printf("Starting Music Player: %ds\n", i);
-    //         SleepInterrupt(1000);
-    //     }
-    //     pauseOneMoment = false;
-    //     SleepInterrupt(200);
-    // }
+    bool pauseOneMoment = true;
+    while (pauseOneMoment) {
+        for (int i = 1; i <= 3; i++) {
+            printf("Starting Music Player: %ds\n", i);
+            SleepInterrupt(1000);
+        }
+        pauseOneMoment = false;
+        SleepInterrupt(200);
+    }
 
     /* Source: UiA, Per-Arne Lecture/Assignment Assets */
     /* ASSIGNMENT_3.4 Keyboard Logger */
-    InitKeyboard();
     
     Tune *tunes[] = {
         new Tune( { "starwars_theme", starwars_theme, sizeof(starwars_theme) / sizeof(Note) } ),

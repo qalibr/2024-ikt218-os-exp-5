@@ -1,7 +1,12 @@
 /* Source:
 - https://web.archive.org/web/20190302142203/http://www.jamesmolloy.co.uk/tutorial_html/3.-The%20Screen.html
 - http://www.osdever.net/bkerndev/Docs/printing.htm
-- UiA, Per-Arne Lecture/Assignment Assets */
+- UiA, Per-Arne Lecture/Assignment Assets
+    
+    And,    
+    UiA IKT218 2024V
+    Group-5 
+*/
 
 #include "io/display.h"
 #include "io/port.h"
@@ -192,6 +197,21 @@ void DisplayMoveCursorToLocAndWriteDec(size_t x, size_t y, uint32_t dec, const c
     cursorY = tempCursorLocY;
 }
 
+void DisplayMoveCursorToLocAndWriteHex(size_t x, size_t y, uint32_t hex, const char *descr) {
+    size_t tempCursorLocX = cursorX;
+    size_t tempCursorLocY = cursorY;
+
+    cursorX = x;
+    cursorY = y;
+
+    DisplayWrite(descr);
+    DisplayWriteHex(hex);
+    DisplayWrite("\n");
+
+    // Restore cursor
+    cursorX = tempCursorLocX;
+    cursorY = tempCursorLocY;
+}
 
 void DisplayMoveCursorToLocAndWriteAnimation(size_t x, size_t y, const char *state) {
     size_t tempCursorLocX = cursorX;

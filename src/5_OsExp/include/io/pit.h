@@ -1,9 +1,4 @@
-/* Source: UiA, Per-Arne Lecture/Assignment Assets
-
-    And,    
-    UiA IKT218 2024V
-    Group-5 
-*/
+/* Source: UiA, Per-Arne Lecture/Assignment Assets */
 
 #ifndef PIT_H
 #define PIT_H

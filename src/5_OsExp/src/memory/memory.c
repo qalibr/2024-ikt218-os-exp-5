@@ -1,4 +1,9 @@
-/* Source: UiA, Per-Arne Lecture/Assignment Assets */
+/* Source: UiA, Per-Arne Lecture/Assignment Assets 
+    
+    And,    
+    UiA IKT218 2024V
+    Group-5 
+*/
 
 #include "memory/memory.h"
 
@@ -33,6 +38,19 @@ void PrintMemoryLayout() {
     printf("Heap start: 0x%x\n", heapBegin);
     printf("Heap end: 0x%x\n", heapEnd);
     printf("PHeap start: 0x%x\nPHeap end: 0x%x\n", pheapBegin, pheapEnd);
+}
+
+void PrintAtCursorMemoryLayout(size_t x, size_t y) {    
+    uint32_t memoryFree = heapEnd - heapBegin - memoryUsed;
+    uint32_t heapSize = heapEnd - heapBegin;
+
+    const char *descrMemoryUsed = "Memory used: ";
+    const char *descrMemoryFree = "Memory free: ";
+    const char *descrHeadSize = "Heap size:   ";
+
+    DisplayMoveCursorToLocAndWriteDec(x, y, memoryUsed, descrMemoryUsed);
+    DisplayMoveCursorToLocAndWriteDec(x, y + 1, memoryFree, descrMemoryFree);
+    DisplayMoveCursorToLocAndWriteDec(x, y + 2, heapSize, descrHeadSize);
 }
 
 void Free(void *mem) {

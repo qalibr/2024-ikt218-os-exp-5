@@ -1,7 +1,12 @@
 /* Source: 
 - http://www.osdever.net/bkerndev/Docs/printing.htm
 - https://web.archive.org/web/20190302142203/http://www.jamesmolloy.co.uk/tutorial_html/3.-The%20Screen.html
-- UiA, Per-Arne Lecture/Assignment Assets */
+- UiA, Per-Arne Lecture/Assignment Assets
+    
+    And,    
+    UiA IKT218 2024V
+    Group-5 
+ */
 
 
 #ifndef DISPLAY_H
@@ -17,6 +22,7 @@ void DisplayMoveCursor();                                                       
 void DisplayMoveCursorToLocAndWrite(size_t x, size_t y, const char *content);
 void DisplayMoveCursorToLocAndWriteAnimation(size_t x, size_t y, const char *state);     // Function to move the cursor to a specific location
 void DisplayMoveCursorToLocAndWriteDec(size_t x, size_t y, uint32_t dec, const char *descr);
+void DisplayMoveCursorToLocAndWriteHex(size_t x, size_t y, uint32_t hex, const char *descr);
 void DisplayScroll();                                                           // Function to scroll the display as more input is received
 void DisplaySetTextColor(uint8_t fgColor, uint8_t bgColor);                     // Function to set the color of the background and foreground
 void InitDisplay();                                                             // Initialize display
