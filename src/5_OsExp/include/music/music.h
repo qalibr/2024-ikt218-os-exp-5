@@ -39,6 +39,7 @@ void PlayMusic(Tune *tune);
 
 void RenderMusicScreen(const Tune *tune, uint32_t currentNoteIndex);
 void UpdateBusyAnimation(uint32_t step);
+void UpdateHeatAnimation(uint32_t step);
 
 bool IsMusicPlaying();
 void MusicRestart();

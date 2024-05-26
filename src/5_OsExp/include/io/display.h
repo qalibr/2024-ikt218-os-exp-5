@@ -16,6 +16,7 @@
 #include "io/display.h"
 
 void DisplayClear();                                                            // Clear the screen
+void DisplayClearLeftHalf();
 void DisplayPut(char c);                                                        // Put single char to screen
 void DisplayWrite(const char *c);                                               // Write null-terminated ASCII string to monitor
 void DisplayMoveCursor();                                                       // Function to move the cursor 
@@ -31,3 +32,41 @@ void DisplayWriteHex(uint32_t num);                                             
 void DisplayHideCursor();
 
 #endif
+
+
+/*
+void UpdateHeatAnimation(uint32_t step) {
+    int frameIndex = step % 3;
+    for (int i = 0; i < 6; i++) {
+        DisplayMoveCursorToLocAndWrite(heatAnimationX, heatAnimationY + i, animationFrame[frameIndex][i]);
+    }
+}
+
+const char *animationFrame[3][6] = {
+    {
+        " (                   ",  // Frame 1
+        " )\\ )    (           ", 
+        "(()/(    )(    (     ",
+        " /(_))_ (()\\   )\\   ",
+        "(_))     ((_) ((_))  ",
+        "(__\\        _     __",
+    },
+    {
+        "  (                  ",  // Frame 2 (Offset)
+        ")\\ )    (           ",
+        "(()/(    )(    (     ",
+        "/(_))_ (()\\   )\\    ",
+        "(_))     ((_) ((_))  ",
+        "(__ )\\   /()_     __",
+    },
+    {
+        "   (                 ",  // Frame 3 (Further Offset)
+        "\\ )    (            ",
+        "(()/(    )(    (     ",
+        " (_))_ (()\\   )\\    ",
+        " )     ((_) ((_))    ",
+        "(__\\        _     __",
+    }
+};
+
+*/

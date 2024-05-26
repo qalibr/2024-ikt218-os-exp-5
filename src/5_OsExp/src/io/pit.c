@@ -45,7 +45,6 @@ void SleepInterrupt(uint32_t ms) {
 
     // Sleep interrupt halts the CPU until its time to wake up
     while (initialTick < endTicks) {
-        asm volatile("sti"); // Enable interrupts
         asm volatile("hlt"); // Halt CPU
 
         initialTick = tick;

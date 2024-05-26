@@ -83,6 +83,24 @@ void DisplayClear() {
     DisplayMoveCursor();
 }
 
+void DisplayClearLeftHalf() {
+    uint8_t attributeByte = displayColor;
+    uint16_t blank = 0x20 | (attributeByte << 8);
+
+    size_t i;
+    for (size_t row = 0; row < SCREEN_HEIGHT; row++) {
+        for (size_t col = 0; col < SCREEN_WIDTH / 2 - 5; col++) {
+            size_t bufferIndex = row * SCREEN_WIDTH + col;
+            displayBuffer[bufferIndex] = blank;
+        }
+    }
+
+    // Also reset position of the cursor
+    cursorX = 0;
+    cursorY = 0;
+    DisplayMoveCursor();
+}
+
 void DisplayWrite(const char *c) {
     size_t i = 0;
     
