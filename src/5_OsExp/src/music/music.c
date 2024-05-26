@@ -11,10 +11,11 @@
 const size_t infoX = 6;
 const size_t infoY = 1;
 
-const size_t memoryInfoY = infoY + 4;
+const size_t controllsInfoX = 0;
+const size_t controllsInfoY = infoY + 4;  // Row: 5
 
-const size_t controllsInfoX = infoX;
-const size_t controllsInfoY = memoryInfoY + 4;
+const size_t memoryInfoX = 0;
+const size_t memoryInfoY = controllsInfoY + 4;  // Row: 9
 
 const size_t animationX = 0;
 const size_t animationY = 1;
@@ -53,7 +54,7 @@ void RenderMusicScreen(const Tune *tune, uint32_t currentNoteIndex) {
     DisplayMoveCursorToLocAndWrite(controllsInfoX, controllsInfoY + 2, controllsRow5);
 
     // Print memory layout
-    PrintAtCursorMemoryLayout(infoX, memoryInfoY);
+    PrintMemoryLayoutAtCursor(memoryInfoX, memoryInfoY);
 }
 
 void UpdateBusyAnimation(uint32_t step) {

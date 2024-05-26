@@ -25,16 +25,13 @@
 
 // Custom constants for sleep functions
 #define PIT_BASE_FREQUENCY 1193180
-#define TARGET_FREQUENCY 1000
+#define TARGET_FREQUENCY 950
 #define DIVIDER (PIT_BASE_FREQUENCY / TARGET_FREQUENCY)
-#define TICKS_PER_MS (TARGET_FREQUENCY / TARGET_FREQUENCY) // ?
+#define TICKS_PER_MS (1000 / TARGET_FREQUENCY)
 
 void InitPit();
-
 void PitIrqHandler(Registers_t *r, void *context);
-
 void SleepInterrupt(uint32_t ms);
-
 void SleepBusy(uint32_t ms);
 
 #endif

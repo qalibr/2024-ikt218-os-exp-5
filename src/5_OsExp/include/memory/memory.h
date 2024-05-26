@@ -1,4 +1,9 @@
-/* Source: UiA, Per-Arne Lecture/Assignment Assets */
+/* Source: UiA, Per-Arne Lecture/Assignment Assets 
+
+    And,    
+    UiA IKT218 2024V
+    Group-5 
+*/
 
 #ifndef MEMORY_H
 #define MEMORY_H
@@ -15,20 +20,11 @@ typedef struct {
     uint32_t size;
 } alloc_t;
 
+void* Malloc(size_t size);   // Allocates memory of a given size
+void Free(void *mem);        // Frees allocated memory.
+
 void InitKernelMemory(uint32_t *kernelEnd);
-
 void PrintMemoryLayout();
-
-void PrintAtCursorMemoryLayout(size_t x, size_t y);
-
-// Allocates memory of a given size and page alignment.
-extern char* PMalloc(size_t size);
-
-// Allocates memory of a given size
-extern void* Malloc(size_t size);
-
-// Frees allocated memory.
-extern void Free(void *mem);
-void PFree(void *mem);
+void PrintMemoryLayoutAtCursor(size_t x, size_t y);
 
 #endif

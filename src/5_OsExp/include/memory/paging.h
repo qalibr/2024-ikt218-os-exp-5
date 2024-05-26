@@ -11,11 +11,8 @@
 
 // Mapping virtual to physical address.
 extern void PagingMap(uint32_t virtual, uint32_t physical);
-
 void EnablePaging();
-
 extern void InitPaging();
-
 void PageFaultHandler(Registers_t r);
 
 #endif

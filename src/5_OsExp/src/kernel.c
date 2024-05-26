@@ -13,6 +13,7 @@
 #include "io/pit.h"
 #include "memory/memory.h"
 #include "memory/paging.h"
+#include "io/keyboard.h"
 
 extern uint32_t end;
 
@@ -30,9 +31,9 @@ int main(uint32_t magic, struct multiboot_info* mb_info_addr) {
     InitInterruptHandlers();        /* ASSIGNMENT_3.2 IRSs */
     InitIrqHandlers();              /* ASSIGNMENT_3.3 IRQs */
     InitKernelMemory(&end);         /* ASSIGNMENT_4 */
-    InitPaging();                   /* ASSIGNMENT_4 */
+    InitPaging();                   /* ASSIGNMENT_4 */ // Paging has no effect.
     InitDisplay();                  /* ASSIGNMENT_2 */
-    PrintMemoryLayout();            /* ASSIGNMENT_4 */
+    InitKeyboard();
    
     /* ASSIGNMENT_2.2 Hello, World! */
     // DisplayWrite("Hello, World!\n");
@@ -41,14 +42,6 @@ int main(uint32_t magic, struct multiboot_info* mb_info_addr) {
 
     /* ASSIGNMENT_3.2 Induce interrupt */
     //asm volatile("int $0x3");
-
-    /* ASSIGNMENT_4 */
-    // Allocating memory not using Malloc and inducing page fault
-    // uint32_t *ptr = (uint32_t *)0xA0000000;
-    // uint32_t do_page_fault = *ptr;
-    // Allocating memory using Malloc and inducing page fault
-    // void *someMemory = Malloc(12345);
-    // void *moreMemory = Malloc(1231234123);
 
     /* ASSIGNMENT_4.2 PIT */
     asm volatile("sti");    // Must enable interrupts before initializing PIT

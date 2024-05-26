@@ -14,9 +14,7 @@
 #include "music/music.h"
 
 char ScancodeToAscii(uint8_t *scanCode);
-
 void KeyboardIrqHandler(Registers_t *r, void *context);
-
 void InitKeyboard();
 
 #endif
