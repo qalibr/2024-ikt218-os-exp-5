@@ -15,21 +15,24 @@
 #include "libc/stdint.h"
 #include "io/display.h"
 
-void DisplayClear();                                                            // Clear the screen
-void DisplayClearLeftHalf();
-void DisplayPut(char c);                                                        // Put single char to screen
-void DisplayWrite(const char *c);                                               // Write null-terminated ASCII string to monitor
-void DisplayMoveCursor();                                                       // Function to move the cursor 
+void DisplayClear();                                            // Clear the screen
+void DisplayClearLeftHalf();                                    // Clear the left-half of the screen
+void DisplayPut(char c);                                        // Put single char to screen
+void DisplayWrite(const char *c);                               // Write null-terminated ASCII string to monitor
+void DisplayMoveCursor();                                       // Function to move the cursor 
+void DisplayScroll();                                           // Function to scroll the display as more input is received
+void DisplaySetTextColor(uint8_t fgColor, uint8_t bgColor);     // Function to set the color of the background and foreground
+void InitDisplay();                                             // Initialize display
+void DisplayWriteDec(uint32_t num);                             // Represent decimal number
+void DisplayWriteHex(uint32_t num);                             // Represent hex number
+void DisplayHideCursor();                                       // TODO
+
+/* Functions to write to specific parts of the screen. */
 void DisplayMoveCursorToLocAndWrite(size_t x, size_t y, const char *content);
-void DisplayMoveCursorToLocAndWriteAnimation(size_t x, size_t y, const char *state);     // Function to move the cursor to a specific location
+void DisplayMoveCursorToLocAndWriteAnimation(size_t x, size_t y, const char *state);
 void DisplayMoveCursorToLocAndWriteDec(size_t x, size_t y, uint32_t dec, const char *descr);
 void DisplayMoveCursorToLocAndWriteHex(size_t x, size_t y, uint32_t hex, const char *descr);
-void DisplayScroll();                                                           // Function to scroll the display as more input is received
-void DisplaySetTextColor(uint8_t fgColor, uint8_t bgColor);                     // Function to set the color of the background and foreground
-void InitDisplay();                                                             // Initialize display
-void DisplayWriteDec(uint32_t num);                                             // Represent decimal number
-void DisplayWriteHex(uint32_t num);                                             // Represent hex number
-void DisplayHideCursor();
+
 
 #endif
 
