@@ -122,8 +122,10 @@ int kernel_main(){
     uint32_t playlistSize = sizeof(tunes) / sizeof(Tune *);
     MusicPlayer *boomblaster = CreateMusicPlayer();
     while (true) {
+        // IsMusicPlaying function returns value from boolean music control variable 'playingMusic' from music.c
         for (uint32_t i = 0; i < playlistSize && IsMusicPlaying(); i++) {
-            boomblaster->playTune(tunes[i]);
+            // Pass Tune object from the 'tunes' array of Tune objects. Index indicates which song is playing.
+            boomblaster->playTune(tunes[i]); 
         }
     }
 

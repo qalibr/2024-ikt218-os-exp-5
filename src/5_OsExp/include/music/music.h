@@ -29,7 +29,6 @@ typedef struct {
     void (*playTune)(Tune* tune);
 } MusicPlayer;
 
-
 MusicPlayer* CreateMusicPlayer();
 void EnableSpeaker();
 void DisableSpeaker();
@@ -37,14 +36,16 @@ void PlaySound(uint32_t freq);
 void StopSound();
 void PlayMusic(Tune *tune);
 
+/* Music player screen interface */
 void RenderMusicScreen(const Tune *tune, uint32_t currentNoteIndex);
 void UpdateBusyAnimation(uint32_t step);
 void UpdateHeatAnimation(uint32_t step);
 
+/* Custom music control */
 bool IsMusicPlaying();
-void MusicRestart();
-void MusicContinue();
-void MusicNext();
+void MusicRestart();        // Key: 'c'
+void MusicContinue();       // Key: 'x'
+void MusicNext();           // Key: 'v'
 
 static Note music_1[] = {
     {E5, 250}, {R, 125}, {E5, 125}, {R, 125}, {E5, 125}, {R, 125},
