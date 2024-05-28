@@ -26,10 +26,8 @@ const size_t MEMORY_INFO_Y = CONTROLLS_INFO_Y + 4;  // Row: 9
 const size_t ANIMATION_X = MARGIN_X;
 const size_t ANIMATION_Y = INFO_Y;
 
-const size_t LOGO_X = 80 - 1 - 28;
-const size_t LOGO_Y = 21 - 3;
 const size_t HEAT_ANIMATION_X = 39;
-const size_t HEAT_ANIMATION_Y = LOGO_Y - 4;
+const size_t HEAT_ANIMATION_Y = 21 - 3 - 4;
 
 /* Control Music Player */
 bool playingMusic = true;

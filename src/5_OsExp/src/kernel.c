@@ -37,6 +37,7 @@ int main(uint32_t magic, struct multiboot_info* mb_info_addr) {
    
     /* ASSIGNMENT_2.2 Hello, World! */
     // DisplayWrite("Hello, World!\n");
+    // printf("Hello, World!");
     // int i = 5;
     // printf("Print 5: %d\n", i + 5);
 
